@@ -438,3 +438,25 @@ window.closeArfModal      = closeArfModal;
 window.closeArfModalBtn   = closeArfModalBtn;
 window.handleModalPreview = handleModalPreview;
 window.vpCloseModal = vpCloseModal;
+
+/* ════════════════════════════════════════
+   ANALISIS — indeks sticky (scrollspy)
+════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', function () {
+    const links = document.querySelectorAll('.an-index a[data-an]');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    const map = {};
+    links.forEach(a => { map[a.dataset.an] = a; });
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+            if (!en.isIntersecting) return;
+            links.forEach(a => a.classList.remove('active'));
+            const a = map[en.target.id];
+            if (a) a.classList.add('active');
+        });
+    }, { rootMargin: '-25% 0px -60% 0px' });
+    Object.keys(map).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) io.observe(el);
+    });
+});

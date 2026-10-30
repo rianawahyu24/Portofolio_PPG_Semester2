@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kegiatan Nonmengajar | E-Portfolio Riana Wahyu</title>
+    <link rel="icon" type="image/x-icon" href="../image/Logo_nobg.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <!-- ── BACKGROUND FX ── -->
+    <div class="bg-grid"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+<!-- ════════════════════════════════════════
+     NAVBAR
+═════════════════════════════════════════ -->
+    <nav>
+        <a href="/index.html" class="nav-logo">
+            <img src="../image/logo2.png" alt="Logo Portfolio">
+        </a>
+        
+        <ul class="nav-links">
+            <li><a href="/html/profil.html">Profil</a></li>
+            <li><a href="/html/artefak.html">Analisis Artefak</a></li>
+            <li><a href="/html/siklus.html">Praktik Mengajar Mandiri</a></li>
+            <li><a href="/html/nonmengajar.html" aria-current="page">Kegiatan NonMengajar</a></li>
+            <li><a href="/html/refleksi.html">Refleksi Perkembangan</a></li>
+            <li><a href="/html/dokumentasi.html">Dokumentasi</a></li>
+            <li><a href="/html/penutup.html">Penutup</a></li>
+        </ul>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle tema"></button>
+    </nav>
+
+        <style>
+    /* ═══════════════════════════════════════════════
+       KEGIATAN NONMENGAJAR — komponen khusus halaman
+       (memakai token warna dari style.css → ikut tema terang/gelap)
+    ═══════════════════════════════════════════════ */
+    .nm-wrap { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 2rem; }
+    .nm-pill { display:inline-flex; align-items:center; gap:.45rem; font-weight:800; font-size:.8rem; padding:.22rem .85rem; border-radius:999px; border:2px solid var(--line); background:var(--pink); color:#1f3d2b; }
+    .nm-pill.ghost { background:transparent; color:var(--text); }
+
+    /* ── HERO ── */
+    .nm-hero { padding:8.2rem 0 2.5rem; }
+    .nm-hero-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:2.5rem; align-items:center; }
+    .nm-hero h1 { font-family:var(--font-display); font-weight:700; line-height:.95; letter-spacing:0; font-size:clamp(3.2rem,8vw,6rem); margin:1rem 0 1rem; color:var(--text); }
+    .nm-hero h1 span { text-decoration:underline wavy var(--pink-deep); text-decoration-thickness:4px; text-underline-offset:.08em; }
+    .nm-hero h1 span::after { content:'✦'; font-size:.4em; margin-left:.2em; vertical-align:.9em; display:inline-block; color:var(--pink-deep); text-decoration:none; }
+    .nm-sub { font-size:1.05rem; font-weight:600; line-height:1.7; max-width:36rem; color:var(--text); }
+    .nm-intro { position:relative; margin-top:1.6rem; padding:1.3rem 1.5rem; max-width:40rem; font-size:.95rem; line-height:1.8; color:var(--muted); }
+    .nm-intro::before { content:''; position:absolute; top:-11px; left:28px; width:74px; height:20px; background:rgba(248,194,222,.9); border:1.5px solid var(--line); border-radius:4px; transform:rotate(-3deg); }
+    .nm-stats { display:grid; gap:1rem; }
+    .nm-stat { display:flex; align-items:center; gap:1rem; padding:1rem 1.2rem; }
+    .nm-stat:nth-child(1) { transform:rotate(-1.6deg); }
+    .nm-stat:nth-child(2) { transform:rotate(1.2deg); margin-left:1.2rem; }
+    .nm-stat:nth-child(3) { transform:rotate(-.8deg); }
+    .nm-stat b { font-family:var(--font-display); font-size:2.6rem; line-height:1; color:var(--accent); min-width:3.2rem; }
+    .nm-stat span { font-size:.85rem; font-weight:700; line-height:1.4; color:var(--text); }
+    .nm-stat.date b { font-size:1.7rem; min-width:auto; }
+
+    /* ── PETA PENGALAMAN ── */
+    .nm-head { margin:3rem 0 1.6rem; }
+    .nm-head h2 { font-family:var(--font-display); font-size:clamp(2.2rem,5vw,3.2rem); line-height:1; margin:.5rem 0 .6rem; }
+    .nm-head h2 span { text-decoration:underline wavy var(--pink-deep); text-decoration-thickness:3px; text-underline-offset:.15em; }
+    .nm-head p { color:var(--muted); max-width:38rem; line-height:1.75; font-size:.95rem; }
+    .nm-map { display:grid; grid-template-columns:repeat(5,1fr); gap:1.1rem; }
+    .nm-map a { display:flex; flex-direction:column; gap:.55rem; padding:1.2rem 1.1rem 1.1rem; min-height:100%; }
+    .nm-map .no { font-family:var(--font-display); font-size:2.3rem; line-height:1; color:var(--accent); }
+    .nm-map i { width:42px; height:42px; display:grid; place-items:center; border-radius:12px; border:2px solid var(--line); background:var(--pink); color:#1f3d2b; font-size:1.05rem; }
+    .nm-map h3 { font-size:.95rem; font-weight:800; line-height:1.3; }
+    .nm-map p { font-size:.78rem; line-height:1.55; color:var(--muted); }
+    .nm-map .go { margin-top:auto; font-size:.75rem; font-weight:800; color:var(--accent); }
+
+    /* ── SECTION KEGIATAN ── */
+    .nm-sec { scroll-margin-top:92px; margin-top:4.2rem; }
+    .nm-sec-top { display:flex; align-items:flex-end; gap:1.2rem; margin-bottom:1.3rem; flex-wrap:wrap; }
+    .nm-big { font-family:var(--font-display); font-weight:700; font-size:clamp(4.5rem,10vw,6.5rem); line-height:.8; color:transparent; -webkit-text-stroke:2px var(--pink-deep); }
+    .nm-sec-top h2 { font-family:var(--font-display); font-weight:700; font-size:clamp(2rem,4.6vw,2.9rem); line-height:1.02; margin-top:.5rem; }
+    .nm-card { padding:2rem 2.1rem 2.2rem; }
+    .nm-card:hover { transform:none !important; box-shadow:5px 5px 0 var(--pink-deep) !important; }
+    .nm-lead { font-size:.98rem; line-height:1.85; color:var(--text); }
+    .nm-lead + .nm-lead { margin-top:.9rem; }
+    .nm-lead b { font-weight:800; }
+    .nm-h { display:flex; align-items:center; gap:.55rem; font-weight:800; font-size:.95rem; margin:1.8rem 0 .9rem; color:var(--text); }
+    .nm-h::before { content:''; width:12px; height:12px; border-radius:50%; background:var(--pink-deep); border:2px solid var(--line); flex:none; }
+    .nm-h::after { content:''; flex:1; height:0; border-top:2px dashed var(--border); }
+
+    .nm-tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:.9rem; }
+    .nm-tile { padding:1rem 1.1rem; border:2px solid var(--line); border-radius:16px; background:var(--bg2); }
+    .nm-tile i { display:inline-grid; place-items:center; width:36px; height:36px; border-radius:10px; background:var(--pink); color:#1f3d2b; border:2px solid var(--line); font-size:.9rem; margin-bottom:.6rem; }
+    .nm-tile h4 { font-size:.92rem; font-weight:800; margin-bottom:.25rem; }
+    .nm-tile p { font-size:.82rem; line-height:1.6; color:var(--muted); }
+
+    .nm-two { display:grid; grid-template-columns:1.2fr .8fr; gap:1.4rem; align-items:start; }
+    .nm-reflect p { font-size:.93rem; line-height:1.85; color:var(--text); }
+    .nm-reflect p + p { margin-top:.85rem; }
+    .nm-learn { padding:1.2rem 1.3rem; border:2px solid var(--line); border-radius:18px; background:var(--bg2); }
+    .nm-learn h4 { font-family:var(--font-display); font-size:1.5rem; line-height:1; margin-bottom:.8rem; }
+    .nm-learn li { display:flex; gap:.6rem; font-size:.86rem; line-height:1.55; color:var(--text); padding:.42rem 0; }
+    .nm-learn li + li { border-top:1px dashed var(--border); }
+    .nm-learn li::before { content:'✓'; flex:none; width:20px; height:20px; display:grid; place-items:center; margin-top:.1rem; border-radius:50%; background:var(--pink); color:#1f3d2b; border:1.5px solid var(--line); font-size:.7rem; font-weight:900; }
+
+    .nm-facts { display:flex; flex-wrap:wrap; gap:.6rem; margin:1.1rem 0 0; }
+    .nm-facts span { display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .9rem; border:2px solid var(--line); border-radius:999px; font-size:.8rem; font-weight:700; background:var(--bg2); }
+    .nm-facts i { color:var(--accent); }
+
+    .nm-flow { display:flex; flex-wrap:wrap; gap:.55rem .35rem; align-items:center; }
+    .nm-flow span { padding:.4rem .9rem; border:2px solid var(--line); border-radius:999px; background:var(--card); font-size:.8rem; font-weight:700; }
+    .nm-flow em { font-style:normal; color:var(--pink-deep); font-weight:900; }
+
+    .nm-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; counter-reset:st; position:relative; }
+    .nm-step { position:relative; padding:1.2rem 1rem 1rem; border:2px solid var(--line); border-radius:16px; background:var(--bg2); counter-increment:st; }
+    .nm-step::before { content:counter(st); position:absolute; top:-15px; left:14px; width:30px; height:30px; display:grid; place-items:center; border-radius:50%; background:var(--pink-deep); color:#1f3d2b; border:2px solid var(--line); font-family:var(--font-display); font-size:1.3rem; font-weight:700; }
+    .nm-step h4 { font-size:.92rem; font-weight:800; margin-bottom:.3rem; }
+    .nm-step p { font-size:.8rem; line-height:1.6; color:var(--muted); }
+
+    .nm-callout { display:flex; gap:1rem; margin-top:1.3rem; padding:1rem 1.2rem; border:2px solid var(--line); border-left:8px solid var(--pink-deep); border-radius:14px; background:var(--bg2); }
+    .nm-callout i { font-size:1.2rem; color:var(--accent); margin-top:.15rem; }
+    .nm-callout b { display:block; font-size:.9rem; margin-bottom:.2rem; }
+    .nm-callout p { font-size:.86rem; line-height:1.7; color:var(--muted); }
+
+    .nm-todo { margin-top:1rem; padding:.8rem 1rem; border:2px dashed var(--border); border-radius:12px; font-size:.82rem; line-height:1.6; color:var(--muted); }
+    .nm-todo b { color:var(--text); }
+
+    /* ── DOKUMENTASI ── */
+    .nm-gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:1.5rem 1.2rem; padding:.6rem .2rem .2rem; }
+    .nm-shot { position:relative; margin:0; padding:.6rem .6rem .8rem; background:#fffdf6; border:2px solid var(--line); border-radius:16px; box-shadow:4px 4px 0 var(--pink-deep); transition:transform .3s, box-shadow .3s; }
+    .nm-shot:nth-child(odd)  { transform:rotate(-1.6deg); }
+    .nm-shot:nth-child(even) { transform:rotate(1.4deg); }
+    .nm-shot:hover { transform:rotate(0) translateY(-4px); box-shadow:6px 6px 0 var(--pink-deep); }
+    .nm-shot::before { content:''; position:absolute; top:-11px; left:50%; width:62px; height:17px; transform:translateX(-50%) rotate(-2deg); background:rgba(248,194,222,.92); border:1.5px solid #1f3d2b; border-radius:3px; z-index:2; }
+    .nm-shot img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:10px; cursor:zoom-in; }
+    .nm-ph { aspect-ratio:4/3; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.35rem; text-align:center; padding:.6rem; border:2px dashed #2e5a3e; border-radius:10px; color:#2e5a3e; background:repeating-linear-gradient(45deg,rgba(46,90,62,.05) 0 10px,transparent 10px 20px); }
+    .nm-ph i { font-size:1.6rem; }
+    .nm-ph b { font-size:.78rem; font-weight:800; }
+    .nm-ph small { font-size:.68rem; line-height:1.4; opacity:.8; }
+    .nm-shot figcaption { margin-top:.65rem; text-align:center; font-size:.8rem; font-weight:800; line-height:1.4; color:#1f3d2b; }
+    .nm-doc-note { margin-top:.4rem; font-size:.76rem; color:var(--muted); }
+    .nm-doc-note code { font-family:'JetBrains Mono',monospace; font-size:.72rem; padding:.05rem .35rem; border-radius:5px; background:var(--bg3); color:var(--text); }
+
+    /* ── REFLEKSI AKHIR ── */
+    .nm-final { position:relative; margin-top:4.5rem; padding:2.6rem 2.4rem 2.4rem; }
+    .nm-final:hover { transform:none !important; box-shadow:5px 5px 0 var(--pink-deep) !important; }
+    .nm-final .q { position:absolute; top:-26px; right:30px; width:58px; height:58px; display:grid; place-items:center; border-radius:50%; background:var(--pink); color:#1f3d2b; border:2px solid var(--line); font-size:1.4rem; box-shadow:3px 3px 0 var(--line); }
+    .nm-final h2 { font-family:var(--font-display); font-size:clamp(2.2rem,5vw,3.4rem); line-height:1; margin:.7rem 0 1.4rem; }
+    .nm-final h2 span { text-decoration:underline wavy var(--pink-deep); text-decoration-thickness:3px; text-underline-offset:.15em; }
+    .nm-final p { font-size:.98rem; line-height:1.9; color:var(--text); max-width:52rem; }
+    .nm-final p + p { margin-top:1rem; }
+    .nm-threads { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.8rem 0; }
+    .nm-thread { padding:1.1rem 1.2rem; border:2px solid var(--line); border-radius:16px; background:var(--bg2); }
+    .nm-thread i { color:var(--accent); font-size:1.15rem; margin-bottom:.5rem; }
+    .nm-thread h4 { font-size:.92rem; font-weight:800; margin-bottom:.3rem; }
+    .nm-thread p { font-size:.82rem; line-height:1.65; color:var(--muted); }
+    .nm-closing { margin-top:1.6rem; padding:1.1rem 1.3rem; border-left:8px solid var(--pink-deep); background:var(--bg2); border-radius:0 14px 14px 0; font-weight:700; font-style:italic; }
+    .nm-end { padding-bottom:3rem; }
+
+    /* ── LIGHTBOX ── */
+    .nm-lb { position:fixed; inset:0; z-index:300; display:none; align-items:center; justify-content:center; padding:2rem; background:rgba(15,32,22,.88); cursor:zoom-out; }
+    .nm-lb.on { display:flex; }
+    .nm-lb img { max-width:100%; max-height:90vh; border:4px solid #fbf8ee; border-radius:14px; box-shadow:8px 8px 0 var(--pink-deep); }
+
+    /* ── RESPONSIF ── */
+    @media (max-width:1000px) { .nm-map { grid-template-columns:repeat(3,1fr); } .nm-steps { grid-template-columns:repeat(2,1fr); row-gap:1.6rem; } }
+    @media (max-width:860px) {
+      .nm-hero-grid, .nm-two { grid-template-columns:1fr; }
+      .nm-stats { grid-template-columns:repeat(3,1fr); }
+      .nm-stat:nth-child(2) { margin-left:0; }
+      .nm-threads { grid-template-columns:1fr; }
+    }
+    @media (max-width:600px) {
+      .nm-wrap { padding:0 1.1rem; }
+      .nm-hero { padding-top:9.5rem; }
+      .nm-map { grid-template-columns:1fr 1fr; gap:.8rem; }
+      .nm-stats { grid-template-columns:1fr; }
+      .nm-steps { grid-template-columns:1fr; }
+      .nm-card { padding:1.4rem 1.2rem 1.6rem; }
+      .nm-final { padding:2.2rem 1.3rem 1.6rem; }
+    }
+    </style>
+
+    <main>
+    <!-- ════════════════════════════════════════
+         HERO
+    ═════════════════════════════════════════ -->
+    <header class="nm-hero">
+      <div class="nm-wrap nm-hero-grid">
+        <div>
+          <span class="nm-pill ghost"><i class="fas fa-school"></i> PPL I TERBIMBING · SMAN 1 BANDUNG</span>
+          <h1>Kegiatan <span>Nonmengajar</span></h1>
+          <p class="nm-sub">Pengalaman belajar di lingkungan sekolah melalui keterlibatan dalam kegiatan rutin, pendampingan ekstrakurikuler, dan pelaksanaan proyek kepemimpinan.</p>
+          <div class="nm-intro card">
+            Pengalaman PPL tidak hanya saya peroleh melalui praktik mengajar di kelas. Saya juga belajar memahami kehidupan sekolah melalui kegiatan nonmengajar. Kegiatan ini memberikan pengalaman untuk berinteraksi dengan murid dalam situasi yang berbeda, memahami tanggung jawab guru di lingkungan sekolah, serta mengembangkan kemampuan berkomunikasi, bekerja sama, dan berkoordinasi.
+          </div>
+        </div>
+        <div class="nm-stats">
+          <div class="nm-stat card"><b>3</b><span>kegiatan utama: piket, Paskibra, proyek kepemimpinan</span></div>
+          <div class="nm-stat card"><b>24</b><span>murid terlibat dalam proyek AI × SDGs</span></div>
+          <div class="nm-stat card date"><b>13–30 Sep</b><span>pelaksanaan proyek, 2026</span></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ════════════════════════════════════════
+         PETA PENGALAMAN
+    ═════════════════════════════════════════ -->
+    <section class="nm-wrap reveal">
+      <div class="nm-head">
+        <span class="section-label">|| Analisis Pengalaman</span>
+        <h2>Lima Ruang <span>Belajar di Sekolah</span></h2>
+        <p>Pilih salah satu pengalaman untuk langsung menuju pembahasannya.</p>
+      </div>
+      <div class="nm-map">
+        <a href="#piket" class="card"><span class="no">01</span><i class="fas fa-clipboard-check"></i><h3>Piket Sekolah</h3><p>Tanggung jawab dan interaksi dengan murid dalam rutinitas sekolah.</p><span class="go">Lihat →</span></a>
+        <a href="#paskibra" class="card"><span class="no">02</span><i class="fas fa-flag"></i><h3>Pendampingan Ekstrakurikuler Paskibra</h3><p>Keterlibatan dalam kegiatan pengembangan karakter murid.</p><span class="go">Lihat →</span></a>
+        <a href="#proyek" class="card"><span class="no">03</span><i class="fas fa-bullseye"></i><h3>Proyek Kepemimpinan</h3><p>Pengalaman merancang, mengoordinasikan, dan mengevaluasi program.</p><span class="go">Lihat →</span></a>
+        <a href="#keterlibatan" class="card"><span class="no">04</span><i class="fas fa-school"></i><h3>Keterlibatan dalam Kegiatan Sekolah</h3><p>Partisipasi dalam kegiatan dan budaya sekolah.</p><span class="go">Lihat →</span></a>
+        <a href="#kolaborasi" class="card"><span class="no">05</span><i class="fas fa-handshake"></i><h3>Kolaborasi dengan Warga Sekolah</h3><p>Pengalaman membangun komunikasi dan kerja sama di lingkungan sekolah.</p><span class="go">Lihat →</span></a>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         01 PIKET SEKOLAH
+    ═════════════════════════════════════════ -->
+    <section class="nm-wrap nm-sec reveal" id="piket">
+      <div class="nm-sec-top">
+        <div class="nm-big">01</div>
+        <div>
+          <span class="nm-pill"><i class="fas fa-clipboard-check"></i> Kegiatan rutin sekolah</span>
+          <h2>Menjalankan Tanggung Jawab melalui Piket Sekolah</h2>
+        </div>
+      </div>
+      <div class="nm-card card">
+        <p class="nm-lead">Piket sekolah menjadi salah satu bentuk keterlibatan saya dalam mendukung kegiatan dan ketertiban sekolah. Kegiatan ini dilaksanakan secara <b>mingguan</b> dengan beberapa tanggung jawab, seperti menyambut murid melalui kegiatan salam-sapa, membantu proses absensi, serta menangani keperluan perizinan murid.</p>
+
+        <div class="nm-h">Rincian aktivitas</div>
+        <div class="nm-tiles">
+          <div class="nm-tile"><i class="fas fa-hand-peace"></i><h4>Salam-sapa</h4><p>Menyambut murid ketika memasuki lingkungan sekolah.</p></div>
+          <div class="nm-tile"><i class="fas fa-clipboard-list"></i><h4>Absensi</h4><p>Membantu proses pendataan kehadiran murid.</p></div>
+          <div class="nm-tile"><i class="fas fa-file-signature"></i><h4>Perizinan</h4><p>Membantu menangani keperluan perizinan murid sesuai alur sekolah.</p></div>
+        </div>
+
+        <div class="nm-h">Analisis dan refleksi</div>
+        <div class="nm-two">
+          <div class="nm-reflect">
+            <p>Melalui kegiatan piket, saya memahami bahwa tanggung jawab guru tidak hanya berkaitan dengan penyampaian materi di kelas. Guru juga memiliki peran dalam menjaga keteraturan lingkungan sekolah dan memberikan pelayanan kepada murid.</p>
+            <p>Interaksi saat salam-sapa menjadi pengalaman sederhana yang memperlihatkan pentingnya membangun komunikasi positif sejak awal murid datang ke sekolah. Sementara itu, keterlibatan dalam absensi dan perizinan mengajarkan saya untuk lebih teliti, bertanggung jawab, dan memahami prosedur yang berlaku di lingkungan sekolah.</p>
+          </div>
+          <div class="nm-learn">
+            <h4>Pembelajaran yang saya peroleh</h4>
+            <ul>
+              <li>Memahami tanggung jawab guru di luar pembelajaran.</li>
+              <li>Membangun komunikasi positif dengan murid.</li>
+              <li>Melatih ketelitian dan tanggung jawab dalam menjalankan tugas.</li>
+              <li>Memahami bahwa kedisiplinan sekolah terbentuk melalui keterlibatan seluruh warga sekolah.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="nm-h">Dokumentasi</div>
+        <div class="nm-gallery">
+          <!-- CARA MENGISI FOTO: isi data-src dengan path foto, contoh data-src="../image-dokum/FOTO 1.JPG" -->
+          <figure class="nm-shot" data-src="" data-alt="Kegiatan salam-sapa"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto salam-sapa</b><small>isi data-src dengan path foto</small></div><figcaption>Salam-sapa pagi hari</figcaption></figure>
+          <figure class="nm-shot" data-src="" data-alt="Tugas piket"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto tugas piket</b><small>isi data-src dengan path foto</small></div><figcaption>Tugas piket sekolah</figcaption></figure>
+          <figure class="nm-shot" data-src="" data-alt="Absensi atau perizinan"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto absensi / perizinan</b><small>isi data-src dengan path foto</small></div><figcaption>Absensi &amp; perizinan murid</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         02 PASKIBRA
+    ═════════════════════════════════════════ -->
+    <section class="nm-wrap nm-sec reveal" id="paskibra">
+      <div class="nm-sec-top">
+        <div class="nm-big">02</div>
+        <div>
+          <span class="nm-pill"><i class="fas fa-flag"></i> Pendampingan dan pengembangan karakter</span>
+          <h2>Belajar Mendampingi Murid melalui Kegiatan Ekstrakurikuler</h2>
+        </div>
+      </div>
+      <div class="nm-card card">
+        <p class="nm-lead">Selain kegiatan pembelajaran di kelas, saya juga mengikuti kegiatan ekstrakurikuler <b>Paskibra</b> sebagai bagian dari pengalaman mengenal kehidupan murid di luar pembelajaran akademik. Kegiatan ekstrakurikuler menjadi ruang bagi murid untuk mengembangkan minat, kedisiplinan, tanggung jawab, dan kemampuan bekerja sama.</p>
+        <!-- CATATAN: sesuaikan dengan peran yang benar-benar dijalankan. Jangan menulis "pelatih/pendamping" jika bukan peran saya. -->
+        <div class="nm-todo"><b>Peran saya dalam kegiatan:</b> [lengkapi dengan aktivitas yang benar-benar dilakukan, misalnya mengikuti latihan, mengamati, atau membantu kegiatan tertentu].</div>
+
+        <div class="nm-h">Hal yang dianalisis</div>
+        <div class="nm-tiles">
+          <div class="nm-tile"><i class="fas fa-clock"></i><h4>Kedisiplinan</h4><p>Penerapan aturan dan ketepatan mengikuti kegiatan.</p></div>
+          <div class="nm-tile"><i class="fas fa-user-check"></i><h4>Tanggung jawab</h4><p>Kesungguhan murid dalam menjalankan tugas.</p></div>
+          <div class="nm-tile"><i class="fas fa-people-arrows"></i><h4>Kerja sama</h4><p>Koordinasi dan kekompakan dalam kelompok.</p></div>
+          <div class="nm-tile"><i class="fas fa-comments"></i><h4>Komunikasi</h4><p>Interaksi selama kegiatan berlangsung.</p></div>
+        </div>
+
+        <div class="nm-h">Analisis dan refleksi</div>
+        <div class="nm-two">
+          <div class="nm-reflect">
+            <p>Pengalaman mengikuti kegiatan Paskibra memberikan sudut pandang lain dalam memahami karakter murid. Kemampuan dan potensi murid tidak hanya terlihat dari aktivitas akademik, tetapi juga melalui keterlibatan mereka dalam kegiatan pengembangan minat dan bakat.</p>
+            <p>Saya belajar bahwa pendampingan murid perlu memperhatikan proses, bukan hanya hasil akhir kegiatan. Kedisiplinan, tanggung jawab, dan kerja sama merupakan karakter yang dibangun melalui pembiasaan dan pengalaman secara berkelanjutan.</p>
+          </div>
+          <div class="nm-learn">
+            <h4>Pembelajaran yang saya peroleh</h4>
+            <ul>
+              <li>Memahami potensi murid di luar kegiatan akademik.</li>
+              <li>Menyadari pentingnya pembiasaan disiplin dan tanggung jawab.</li>
+              <li>Memahami peran kegiatan ekstrakurikuler dalam pembentukan karakter.</li>
+              <li>Belajar melihat murid melalui konteks yang lebih luas daripada aktivitas di kelas.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="nm-h">Dokumentasi</div>
+        <div class="nm-gallery">
+          <figure class="nm-shot" data-src="" data-alt="Kegiatan Paskibra"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto kegiatan Paskibra</b><small>isi data-src dengan path foto</small></div><figcaption>Kegiatan ekstrakurikuler Paskibra</figcaption></figure>
+          <figure class="nm-shot" data-src="" data-alt="Keterlibatan saat kegiatan"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto keterlibatan saya</b><small>isi data-src dengan path foto</small></div><figcaption>Keterlibatan selama kegiatan</figcaption></figure>
+          <figure class="nm-shot" data-src="" data-alt="Latihan bersama murid"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto tambahan</b><small>opsional</small></div><figcaption>Bersama murid Paskibra</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         03 PROYEK KEPEMIMPINAN
+    ═════════════════════════════════════════ -->
+    <section class="nm-wrap nm-sec reveal" id="proyek">
+      <div class="nm-sec-top">
+        <div class="nm-big">03</div>
+        <div>
+          <span class="nm-pill"><i class="fas fa-bullseye"></i> Perencanaan dan koordinasi proyek</span>
+          <h2>Mengembangkan Kepemimpinan melalui Proyek AI × SDGs</h2>
+        </div>
+      </div>
+      <div class="nm-card card">
+        <p class="nm-lead"><b>AI × SDGs: Critical Debate for Sustainable Future</b> merupakan kegiatan yang mengintegrasikan literasi kecerdasan artifisial (AI) dengan isu pembangunan berkelanjutan melalui aktivitas debat kritis. Kegiatan ini melibatkan 24 murid dari Komunitas Debat dengan dukungan OSIS.</p>
+        <p class="nm-lead">Dalam proyek ini, saya menjalankan peran <b>Project Management dan Koordinasi</b>, yaitu mengoordinasikan rangkaian kegiatan serta komunikasi dengan komunitas debat dan OSIS.</p>
+        <div class="nm-facts">
+          <span><i class="fas fa-users"></i> 24 murid Komunitas Debat</span>
+          <span><i class="fas fa-calendar-days"></i> 13–30 September 2026</span>
+          <span><i class="fas fa-handshake"></i> Didukung OSIS</span>
+          <span><i class="fas fa-user-gear"></i> Peran: Project Management &amp; Koordinasi</span>
+        </div>
+
+        <div class="nm-h">Rangkaian kegiatan proyek</div>
+        <div class="nm-flow">
+          <span>Edukasi AI etis</span><em>→</em>
+          <span>Eksplorasi isu SDGs</span><em>→</em>
+          <span>Pemeriksaan fakta</span><em>→</em>
+          <span>Argumen PRO–KONTRA</span><em>→</em>
+          <span>Debat</span><em>→</em>
+          <span>Seminar</span>
+        </div>
+
+        <div class="nm-h">Tahapan peran saya</div>
+        <div class="nm-steps">
+          <div class="nm-step"><h4>Perencanaan</h4><p>Menyusun rangkaian kegiatan dan mengoordinasikan kebutuhan pelaksanaan proyek.</p></div>
+          <div class="nm-step"><h4>Koordinasi</h4><p>Membangun komunikasi dengan komunitas debat dan OSIS untuk mendukung pelaksanaan kegiatan.</p></div>
+          <div class="nm-step"><h4>Pelaksanaan</h4><p>Mengoordinasikan kegiatan edukasi AI etis, eksplorasi isu SDGs, pemeriksaan fakta, penyusunan argumen, dan debat.</p></div>
+          <div class="nm-step"><h4>Evaluasi</h4><p>Meninjau pelaksanaan kegiatan, ketercapaian target, serta kendala yang muncul selama proyek.</p></div>
+        </div>
+
+        <div class="nm-h">Analisis dan refleksi</div>
+        <div class="nm-two">
+          <div class="nm-reflect">
+            <p>Pengalaman mengelola proyek memperlihatkan bahwa kepemimpinan tidak hanya berkaitan dengan pembagian tugas, tetapi juga kemampuan menjaga komunikasi, memastikan setiap bagian kegiatan berjalan, dan menyesuaikan rencana ketika menghadapi kendala.</p>
+            <p>Saya juga belajar bahwa keberhasilan sebuah proyek tidak hanya ditentukan oleh satu orang, tetapi bergantung pada koordinasi dan kontribusi setiap pihak yang terlibat.</p>
+          </div>
+          <div class="nm-learn">
+            <h4>Pembelajaran yang saya peroleh</h4>
+            <ul>
+              <li>Mengembangkan kemampuan perencanaan dan koordinasi.</li>
+              <li>Melatih komunikasi dan kolaborasi lintas kelompok.</li>
+              <li>Belajar mengambil keputusan ketika menghadapi perubahan situasi.</li>
+              <li>Memahami pentingnya evaluasi terhadap proses dan ketercapaian target.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="nm-callout">
+          <i class="fas fa-triangle-exclamation"></i>
+          <div><b>Tantangan dan penyesuaian</b><p>Selama pelaksanaan proyek, terdapat keterlambatan pada ketiga hari kegiatan sehingga beberapa sesi perlu disesuaikan. Hal tersebut menjadi pengalaman bagi saya bahwa perencanaan kegiatan perlu disertai pemantauan waktu, koordinasi aktif, dan kesiapan alternatif ketika pelaksanaan tidak berjalan sesuai jadwal.</p></div>
+        </div>
+
+        <div class="nm-h">Dokumentasi</div>
+        <div class="nm-gallery">
+          <figure class="nm-shot" data-src="" data-alt="Koordinasi proyek"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto koordinasi</b><small>isi data-src dengan path foto</small></div><figcaption>Koordinasi dengan komunitas debat &amp; OSIS</figcaption></figure>
+          <figure class="nm-shot" data-src="" data-alt="Edukasi AI etis"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto edukasi AI</b><small>isi data-src dengan path foto</small></div><figcaption>Kegiatan edukasi AI etis</figcaption></figure>
+          <figure class="nm-shot" data-src="" data-alt="Persiapan debat"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto persiapan debat</b><small>isi data-src dengan path foto</small></div><figcaption>Persiapan debat</figcaption></figure>
+          <figure class="nm-shot" data-src="" data-alt="Pelaksanaan debat"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto pelaksanaan debat</b><small>isi data-src dengan path foto</small></div><figcaption>Pelaksanaan debat</figcaption></figure>
+          <figure class="nm-shot" data-src="" data-alt="Seminar"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto seminar</b><small>isi data-src dengan path foto</small></div><figcaption>Seminar</figcaption></figure>
+        </div>
+        <p class="nm-doc-note">Tambahkan kartu foto baru dengan menyalin satu blok <code>&lt;figure class="nm-shot"&gt;</code>.</p>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         04 KETERLIBATAN DALAM KEGIATAN SEKOLAH
+    ═════════════════════════════════════════ -->
+    <section class="nm-wrap nm-sec reveal" id="keterlibatan">
+      <div class="nm-sec-top">
+        <div class="nm-big">04</div>
+        <div>
+          <span class="nm-pill"><i class="fas fa-school"></i> Partisipasi dalam kegiatan dan budaya sekolah</span>
+          <h2>Menjadi Bagian dari Budaya Sekolah</h2>
+        </div>
+      </div>
+      <div class="nm-card card">
+        <p class="nm-lead">Selain tugas yang terjadwal, PPL membuat saya terlibat dalam rutinitas dan kegiatan yang membentuk keseharian di SMAN 1 Bandung. Salam-sapa pagi, piket mingguan, ekstrakurikuler, hingga proyek bersama OSIS dan Komunitas Debat menjadi cara saya mengenal sekolah dari dekat, tidak hanya dari ruang kelas.</p>
+
+        <div class="nm-h">Bentuk keterlibatan</div>
+        <div class="nm-tiles">
+          <div class="nm-tile"><i class="fas fa-sun"></i><h4>Kebiasaan harian</h4><p>Salam-sapa dan piket mingguan sebagai bagian dari rutinitas sekolah.</p></div>
+          <div class="nm-tile"><i class="fas fa-flag"></i><h4>Pengembangan minat murid</h4><p>Mengikuti kegiatan ekstrakurikuler Paskibra.</p></div>
+          <div class="nm-tile"><i class="fas fa-lightbulb"></i><h4>Program bersama murid</h4><p>Proyek AI × SDGs bersama Komunitas Debat dan OSIS.</p></div>
+          <div class="nm-tile" style="border-style:dashed"><i class="fas fa-plus"></i><h4>Kegiatan sekolah lain</h4><p>[lengkapi jika ada, misalnya upacara, apel, atau acara sekolah yang diikuti]</p></div>
+        </div>
+
+        <div class="nm-h">Analisis dan refleksi</div>
+        <div class="nm-two">
+          <div class="nm-reflect">
+            <p>Keterlibatan di luar kelas membuat saya melihat sekolah sebagai satu ekosistem, bukan sekadar kumpulan jam pelajaran. Budaya sekolah seperti kedisiplinan, kebiasaan saling menyapa, ketertiban administrasi, dan semangat berorganisasi terbentuk dari kebiasaan-kebiasaan kecil yang dijalankan bersama secara berulang.</p>
+            <p>Dengan ikut serta, saya belajar membaca ritme dan aturan sekolah, sekaligus mengenal murid dalam situasi yang lebih beragam. Pengalaman ini membantu saya memahami bahwa kehadiran guru tidak terpisah dari lingkungan tempat murid tumbuh dan belajar.</p>
+          </div>
+          <div class="nm-learn">
+            <h4>Pembelajaran yang saya peroleh</h4>
+            <ul>
+              <li>Memahami sekolah sebagai ekosistem yang saling terhubung.</li>
+              <li>Menyadari bahwa budaya sekolah dibentuk oleh pembiasaan bersama.</li>
+              <li>Mengenal murid melalui situasi di luar pembelajaran.</li>
+              <li>Menyesuaikan diri dengan aturan dan ritme kegiatan sekolah.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="nm-h">Dokumentasi</div>
+        <div class="nm-gallery">
+          <figure class="nm-shot" data-src="" data-alt="Kegiatan sekolah"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto kegiatan sekolah</b><small>isi data-src dengan path foto</small></div><figcaption>Kegiatan di lingkungan sekolah</figcaption></figure>
+          <figure class="nm-shot" data-src="" data-alt="Bersama murid"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto bersama murid</b><small>isi data-src dengan path foto</small></div><figcaption>Bersama murid di luar kelas</figcaption></figure>
+          <figure class="nm-shot" data-src="" data-alt="Budaya sekolah"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto budaya sekolah</b><small>opsional</small></div><figcaption>Suasana dan budaya sekolah</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         05 KOLABORASI DENGAN WARGA SEKOLAH
+    ═════════════════════════════════════════ -->
+    <section class="nm-wrap nm-sec reveal" id="kolaborasi">
+      <div class="nm-sec-top">
+        <div class="nm-big">05</div>
+        <div>
+          <span class="nm-pill"><i class="fas fa-handshake"></i> Komunikasi dan kerja sama</span>
+          <h2>Belajar Bekerja Bersama Warga Sekolah</h2>
+        </div>
+      </div>
+      <div class="nm-card card">
+        <p class="nm-lead">Hampir seluruh kegiatan nonmengajar menuntut saya bekerja bersama pihak lain: murid, pengurus OSIS, anggota Komunitas Debat, serta warga sekolah yang terlibat dalam alur absensi dan perizinan. Dari sini saya belajar bahwa kolaborasi dimulai dari komunikasi yang jelas dan kesediaan memahami peran masing-masing.</p>
+
+        <div class="nm-h">Bentuk kolaborasi</div>
+        <div class="nm-tiles">
+          <div class="nm-tile"><i class="fas fa-comments"></i><h4>Komunikasi</h4><p>Berkoordinasi dengan Komunitas Debat dan OSIS dalam pelaksanaan proyek.</p></div>
+          <div class="nm-tile"><i class="fas fa-people-group"></i><h4>Kerja sama</h4><p>Menyesuaikan sesi bersama pihak terkait ketika jadwal kegiatan bergeser.</p></div>
+          <div class="nm-tile"><i class="fas fa-hands-helping"></i><h4>Pelayanan</h4><p>Mengikuti alur sekolah dalam membantu absensi dan perizinan murid.</p></div>
+        </div>
+        <div class="nm-todo"><b>Tambahan (opsional):</b> [sebutkan pihak lain yang bekerja sama dengan saya, misalnya guru pamong, guru piket, atau pembina ekstrakurikuler, sesuai pengalaman sebenarnya].</div>
+
+        <div class="nm-h">Analisis dan refleksi</div>
+        <div class="nm-two">
+          <div class="nm-reflect">
+            <p>Pengalaman memimpin koordinasi proyek menunjukkan bahwa kolaborasi tidak cukup dengan pembagian tugas. Setiap pihak perlu mendapat informasi yang sama, memahami waktu dan targetnya, serta merasa dilibatkan. Ketika keterlambatan terjadi, komunikasi yang cepat menjadi dasar untuk menata ulang sesi tanpa mengorbankan tujuan kegiatan.</p>
+            <p>Dalam kegiatan piket, kolaborasi tampak dalam bentuk yang lebih sederhana: mengikuti prosedur, bersikap ramah, dan menjalankan tugas dengan teliti agar rutinitas sekolah berjalan lancar. Keduanya mengajarkan bahwa kepercayaan antarwarga sekolah dibangun melalui sikap bertanggung jawab yang konsisten.</p>
+          </div>
+          <div class="nm-learn">
+            <h4>Pembelajaran yang saya peroleh</h4>
+            <ul>
+              <li>Menjaga komunikasi yang jelas dengan berbagai pihak.</li>
+              <li>Menghargai peran dan kontribusi setiap warga sekolah.</li>
+              <li>Menyesuaikan rencana bersama ketika situasi berubah.</li>
+              <li>Membangun kepercayaan melalui tanggung jawab yang konsisten.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="nm-h">Dokumentasi</div>
+        <div class="nm-gallery">
+          <figure class="nm-shot" data-src="" data-alt="Koordinasi dengan OSIS"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto koordinasi OSIS</b><small>isi data-src dengan path foto</small></div><figcaption>Koordinasi dengan OSIS</figcaption></figure>
+          <figure class="nm-shot" data-src="" data-alt="Diskusi dengan komunitas debat"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto diskusi tim</b><small>isi data-src dengan path foto</small></div><figcaption>Diskusi dengan Komunitas Debat</figcaption></figure>
+          <figure class="nm-shot" data-src="" data-alt="Bersama warga sekolah"><div class="nm-ph"><i class="fas fa-camera"></i><b>Foto bersama warga sekolah</b><small>isi data-src dengan path foto</small></div><figcaption>Bersama warga sekolah</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         REFLEKSI KESELURUHAN
+    ═════════════════════════════════════════ -->
+    <section class="nm-wrap nm-end reveal" id="refleksi-nonmengajar">
+      <div class="nm-final card">
+        <div class="q"><i class="fas fa-quote-left"></i></div>
+        <span class="section-label">|| Refleksi Keseluruhan</span>
+        <h2>Memahami Peran Guru <span>di Luar Ruang Kelas</span></h2>
+        <p>Melalui berbagai kegiatan nonmengajar, saya semakin memahami bahwa menjadi guru tidak hanya berarti merancang dan melaksanakan pembelajaran. Ada tanggung jawab lain yang melekat, mulai dari menjaga keteraturan sekolah, membangun hubungan dengan murid, mendukung pengembangan minat dan karakter, hingga bekerja sama dengan berbagai pihak dalam menjalankan kegiatan sekolah.</p>
+
+        <div class="nm-threads">
+          <div class="nm-thread"><i class="fas fa-clipboard-check"></i><h4>Piket sekolah</h4><p>Mengajarkan saya tentang tanggung jawab dan komunikasi dalam keseharian sekolah.</p></div>
+          <div class="nm-thread"><i class="fas fa-flag"></i><h4>Ekstrakurikuler Paskibra</h4><p>Memberi pengalaman memahami perkembangan karakter dan potensi murid di luar kelas.</p></div>
+          <div class="nm-thread"><i class="fas fa-bullseye"></i><h4>Proyek kepemimpinan</h4><p>Melatih saya merencanakan kegiatan, berkoordinasi, menghadapi kendala, dan mengevaluasi program.</p></div>
+        </div>
+
+        <p>Ketiga pengalaman tersebut memperluas pemahaman saya bahwa peran guru tidak dapat dibatasi hanya pada kegiatan pembelajaran. Guru juga menjadi bagian dari lingkungan yang mendukung perkembangan murid secara lebih menyeluruh.</p>
+        <div class="nm-closing">Guru bukan hanya hadir di depan kelas, tetapi juga di tengah kehidupan sekolah.</div>
+      </div>
+    </section>
+    </main>
+
+    <div class="nm-lb" id="nmLb" role="dialog" aria-label="Pratinjau foto"><img alt=""></div>
+
+    <!-- ════════════════════════════════════════
+         FOOTER
+    ═════════════════════════════════════════ -->
+    <footer>
+        <p class="footer-name">
+            &copy; 2026 E-Portofolio | PPL PPG Prajabatan | Riana Wahyu Puspitasari | semua hak cipta dilindungi.
+        </p>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+    /* Dokumentasi: isi atribut data-src pada <figure class="nm-shot"> → foto otomatis tampil. Klik foto untuk memperbesar. */
+    (function () {
+        document.querySelectorAll('.nm-shot[data-src]').forEach(function (fig) {
+            var src = (fig.getAttribute('data-src') || '').trim();
+            if (!src) return;
+            var ph = fig.querySelector('.nm-ph');
+            var img = new Image();
+            img.loading = 'lazy';
+            img.alt = fig.getAttribute('data-alt') || '';
+            img.onload = function () { if (ph) ph.replaceWith(img); };
+            img.onerror = function () { console.warn('Foto tidak ditemukan:', src); };
+            img.src = src;
+        });
+        var lb = document.getElementById('nmLb'), lbImg = lb.querySelector('img');
+        document.addEventListener('click', function (e) {
+            var t = e.target;
+            if (t.matches('.nm-shot img')) { lbImg.src = t.src; lbImg.alt = t.alt; lb.classList.add('on'); }
+            else if (lb.contains(t) || t === lb) { lb.classList.remove('on'); }
+        });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('on'); });
+    })();
+    </script>
+</body>
+
+</html>

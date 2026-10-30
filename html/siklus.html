@@ -11,6 +11,69 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../style.css">
+    <style>
+    /* ===== Siklus PPL I — 4 siklus praktik mengajar mandiri (scoped, melengkapi style.css) ===== */
+    .cy { --cc:#3f7552; }
+    .cy.c1 { --cc:#3f7552; } .cy.c2 { --cc:#d9719f; } .cy.c3 { --cc:#2f8ea0; } .cy.c4 { --cc:#b98716; }
+    [data-theme="dark"] .cy.c1 { --cc:#8fd1a6; } [data-theme="dark"] .cy.c2 { --cc:#f8c2de; }
+    [data-theme="dark"] .cy.c3 { --cc:#7fd0df; } [data-theme="dark"] .cy.c4 { --cc:#f2d28a; }
+    .cycle-item.cy .cycle-dot { border-color:var(--cc); }
+    .cycle-item.cy:hover .cycle-dot { box-shadow:0 0 14px var(--cc); }
+    .cy .cycle-card { border-top:3px solid var(--cc); scroll-margin-top:6rem; }
+    .cy { scroll-margin-top:6rem; }
+    .cy-subtitle { font-family:'Outfit',sans-serif; font-size:1.15rem; font-weight:700; margin:-1.6rem 0 1rem; color:var(--text); }
+    .cy-kicker { font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--cc); margin-bottom:0.3rem; letter-spacing:0.04em; }
+    .cy-kicker i { margin-right:0.35rem; }
+    .cy-badge { color:var(--cc); border:1px solid var(--cc); background:transparent; }
+    .cy-best { font-family:'JetBrains Mono',monospace; font-size:0.68rem; padding:0.3rem 0.8rem; border-radius:50px; background:var(--cc); color:var(--bg); font-weight:700; }
+    .cy-fokus { margin-bottom:1.2rem; }
+    .cy-fokus b { color:var(--text); }
+    .cy-chips { display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:2.6rem; }
+    .cy-chip { --cc:#3f7552; display:inline-flex; align-items:center; gap:0.55rem; padding:0.45rem 1rem 0.45rem 0.5rem; border-radius:999px; border:1px solid var(--cc); color:var(--text); text-decoration:none; font-size:0.8rem; transition:transform .25s, background .25s; }
+    .cy-chip span { font-family:'JetBrains Mono',monospace; font-size:0.68rem; min-width:1.7rem; height:1.7rem; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; background:var(--cc); color:var(--bg); font-weight:700; }
+    .cy-chip:hover { transform:translateY(-2px); background:rgba(127,127,127,0.08); }
+    .cy-chip.c1 { --cc:#3f7552; } .cy-chip.c2 { --cc:#d9719f; } .cy-chip.c3 { --cc:#2f8ea0; } .cy-chip.c4 { --cc:#b98716; }
+    [data-theme="dark"] .cy-chip.c1 { --cc:#8fd1a6; } [data-theme="dark"] .cy-chip.c2 { --cc:#f8c2de; }
+    [data-theme="dark"] .cy-chip.c3 { --cc:#7fd0df; } [data-theme="dark"] .cy-chip.c4 { --cc:#f2d28a; }
+    .cy-accs { display:flex; flex-direction:column; gap:0.7rem; }
+    .cy-acc { border:1px solid var(--border); border-radius:var(--radius-sm); background:rgba(127,127,127,0.04); overflow:hidden; }
+    .cy-acc[open] { border-color:var(--cc); }
+    .cy-acc summary { list-style:none; display:flex; align-items:center; gap:0.85rem; padding:0.8rem 1.1rem; cursor:pointer; font-weight:600; font-size:0.9rem; color:var(--text); }
+    .cy-acc summary::-webkit-details-marker { display:none; }
+    .cy-acc summary:hover { background:rgba(127,127,127,0.07); }
+    .cy-acc-letter { font-family:'JetBrains Mono',monospace; font-size:0.72rem; width:1.7rem; height:1.7rem; flex:none; display:inline-flex; align-items:center; justify-content:center; border-radius:8px; background:var(--cc); color:var(--bg); font-weight:700; }
+    .cy-acc-title { flex:1; }
+    .cy-acc-arrow { opacity:0.6; transition:transform .3s; }
+    .cy-acc[open] .cy-acc-arrow { transform:rotate(180deg); }
+    .cy-acc-body { padding:0.3rem 1.2rem 1.3rem; color:var(--muted); font-size:0.88rem; line-height:1.75; }
+    .cy-acc-body p { margin-bottom:0.8rem; }
+    .cy-meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:0.6rem; margin-top:1rem; }
+    .cy-meta span { padding:0.6rem 0.8rem; border:1px solid var(--border); border-radius:10px; font-size:0.8rem; }
+    .cy-meta b { display:block; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--cc); margin-bottom:0.15rem; }
+    .cy-note { font-size:0.82rem; margin-bottom:1rem !important; }
+    .cy-lens-title { font-family:'JetBrains Mono',monospace; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--cc); margin-bottom:0.5rem !important; }
+    .cy-lens { list-style:none; padding:0; margin:0 0 1.1rem; }
+    .cy-lens li { position:relative; padding:0.15rem 0 0.15rem 1.3rem; }
+    .cy-lens li::before { content:''; position:absolute; left:0.2rem; top:0.75rem; width:6px; height:6px; border-radius:50%; background:var(--cc); }
+    .cy-ph { border:1.5px dashed var(--cc); border-radius:var(--radius-sm); padding:0.9rem 1.1rem; background:rgba(127,127,127,0.05); }
+    .cy-ph p { margin:0.4rem 0 0 !important; font-size:0.84rem; }
+    .cy-ph b { color:var(--text); }
+    .cy-ph-tag { font-family:'JetBrains Mono',monospace; font-size:0.62rem; text-transform:uppercase; letter-spacing:0.06em; padding:0.15rem 0.55rem; border-radius:50px; border:1px solid var(--cc); color:var(--cc); }
+    .cy-doc, .cy-video { margin-bottom:1.3rem; }
+    .cy-doc-label { font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--cc); margin-bottom:0.6rem; }
+    .cy-video .cycle-video-wrap { margin-top:0.7rem; }
+    @media (max-width:600px) {
+        .timeline { padding-left:1.6rem; }
+        .cycle-dot { left:-1.7rem; }
+        .cy .cycle-card { padding:1.2rem 1rem; }
+        .cy-subtitle { margin-top:-1.4rem; font-size:1.02rem; }
+        .cy-acc summary { padding:0.7rem 0.8rem; font-size:0.84rem; }
+        .cy-acc-body { padding:0.2rem 0.9rem 1.1rem; }
+        .cy .cycle-pdf-preview iframe { height:380px; }
+        .cy .cycle-video-wrap iframe { height:230px; }
+        .cy .cycle-pdf-download { width:100%; }
+    }
+    </style>
 </head>
 
 <body>
@@ -36,276 +99,551 @@
         <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle tema"></button>
     </nav>
 
+<!-- ARSIP aset siklus lama (Excel Dasar, Excel IF, Algoritma &amp; Pemrograman) — tidak dipakai pada 4 siklus baru, masih dipakai di artefak.html:
+     1Wth3yI5veLU4f9yuaILrXdK3qMMqhkI-
+     1YrBzQnJMbOBMMDd-XXpzrALamUd_Gek8
+     1qRYFxsGCNMSYuGPWAXfuvRTwtqivCDYP
+     1raf6XCNqqw
+     dg-9TGpLUbI
+     uw_DhI-mXAc
+-->
 <!-- ══════════════════════════════════════════════
-     SIKLUS PPL (TIMELINE)
+     JEJAK PERKEMBANGAN PEMBELAJARAN PPL I — 4 SIKLUS PRAKTIK MENGAJAR MANDIRI
+     Tautan dokumen &amp; video diisi pada objek SIKLUS_ASET di script bagian bawah halaman.
 ══════════════════════════════════════════════ -->
 <section id="siklus">
     <div class="container">
         <div class="reveal">
-            <p class="section-label"> || Jejak Perkembangan Pembelajaran PPL I</p>
-            <h2 class="section-title">Transformasi<span> 3 Siklus Pembelajaran</span></h2>
+            <p class="section-label"> || Praktik Mengajar Mandiri</p>
+            <h2 class="section-title">Jejak Perkembangan<span> Pembelajaran PPL I</span></h2>
             <div class="divider"></div>
-            <p style="color:var(--muted);max-width:1000px;line-height:1.7;margin-bottom:3rem;font-size:0.93rem;">
-                Tiga siklus pembelajaran yang merekam proses bertumbuh sebagai calon guru. Setiap tahap menunjukkan peningkatan kepercayaan diri, kemampuan pedagogis, serta kesiapan untuk menciptakan pengalaman belajar yang bermakna bagi peserta didik.
+            <h3 class="cy-subtitle">Transformasi 4 Siklus Praktik Mengajar Mandiri</h3>
+            <p style="color:var(--muted);max-width:1000px;line-height:1.7;margin-bottom:1.6rem;font-size:0.93rem;">
+                Empat siklus praktik mengajar mandiri mendokumentasikan pengalaman saya dalam merancang, melaksanakan, dan mengevaluasi pembelajaran Informatika di kelas. Setiap siklus menghadirkan materi dan tantangan pembelajaran yang berbeda. Melalui proses ini, saya mengembangkan kemampuan dalam menyusun perencanaan, memilih materi dan media, merancang aktivitas pembelajaran, serta merefleksikan pelaksanaannya berdasarkan kondisi dan respons murid.
             </p>
+            <div class="cy-chips" role="navigation" aria-label="Pintasan siklus"><a class="cy-chip c1" href="#siklus-1"><span>01</span>LKPD Microsoft Word</a><a class="cy-chip c2" href="#siklus-2"><span>02</span>Sistem Komputer 1</a><a class="cy-chip c3" href="#siklus-3"><span>03</span>Sistem Komputer 2</a><a class="cy-chip c4" href="#siklus-4"><span>04</span>Jaringan Komputer 1</a></div>
         </div>
 
         <div class="timeline">
 
-            <!-- ═══ SIKLUS 1 ═══ -->
-            <div class="cycle-item">
+           <!-- ═══ SIKLUS 1 — LKPD Microsoft Word ═══ -->
+            <div class="cycle-item cy c1" id="siklus-1">
                 <div class="cycle-dot"></div>
                 <div class="card cycle-card">
                     <div class="cycle-header">
                         <div>
-                            <p style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent);margin-bottom:0.3rem;">SIKLUS 01</p>
-                            <h3 class="cycle-title">Belajar Bersama Guru Pamong</h3>
+                            <p class="cy-kicker"><i class="fas fa-file-word"></i> SIKLUS 01</p>
+                            <h3 class="cycle-title">Eksplorasi Microsoft Word melalui LKPD</h3>
                         </div>
-                        <span class="cycle-badge badge-s1">Observasi &amp; Kolaborasi</span>
+                        <span class="cycle-badge cy-badge">Aplikasi Pengolah Kata</span>
                     </div>
-                    <p class="cycle-desc">
-                        Pada siklus pertama, saya masih berada pada tahap adaptasi terhadap situasi kelas yang sesungguhnya. Guru Pamong berperan aktif dalam memberikan arahan, membantu mengelola kelas, serta membimbing saya saat menyampaikan materi Excel Dasar. Melalui pendampingan tersebut, saya mulai memahami karakter peserta didik, ritme pembelajaran, dan strategi yang diperlukan untuk menciptakan suasana belajar yang kondusif.
-                    </p>
-                    <div class="cycle-stats">
-                        <div class="stat-box">
-                            <div class="stat-num" style="color:var(--accent)">40%</div>
-                            <div class="stat-label"><b>Kemandirian</b></div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-num" style="color:var(--accent2)">Tinggi</div>
-                            <div class="stat-label">Intervensi Guru Pamong</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-num" style="color:var(--accent3)">65%</div>
-                            <div class="stat-label"><b>Partisipasi Siswa</b></div>
-                        </div>
-                    </div>
-                    <div class="progress-row">
-                        <span style="font-size:0.73rem;color:var(--muted);min-width:90px">Kemandirian</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="background:linear-gradient(135deg, #34d36e, #f472b6)" data-width="40"></div>
-                        </div>
-                        <span style="font-family:'JetBrains Mono',monospace;font-size:0.73rem;color:var(--accent)">40%</span>
-                    </div>
-                    <!-- MODUL SIKLUS 1 -->
-                    <div class="cycle-media-section">
-                        <div class="cycle-media-label">
-                            <span class="media-label-icon">📄</span>
-                            <span>Modul Ajar — Siklus 1</span>
-                        </div>
-                        <div class="cycle-pdf-box">
-                            <button class="cycle-pdf-toggle" onclick="togglePDF(this)"
-                               data-pdf="https://drive.google.com/file/d/1Wth3yI5veLU4f9yuaILrXdK3qMMqhkI-/preview"> 
-                                <span class="pdf-toggle-icon">📋</span>
-                                <span class="pdf-toggle-text">Lihat Preview Modul</span>
-                                <span class="pdf-toggle-arrow">▾</span>
-                            </button>
-                            <div class="cycle-pdf-preview" style="display:none;">
-                                <iframe src="" frameborder="0" allow="autoplay"></iframe>
+
+                    <p class="cycle-desc cy-fokus"><b>Fokus:</b> Mengenali antarmuka Microsoft Word dan menerapkan fitur dasar pengolah kata melalui kegiatan Word Explorer Challenge serta pembuatan Digital Introduction Card.</p>
+
+                    <div class="cy-accs">
+                        <details class="cy-acc" open>
+                            <summary><span class="cy-acc-letter">A</span><span class="cy-acc-title">Gambaran Praktik Mengajar</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Pada siklus pertama praktik mengajar mandiri, saya mengangkat materi pengenalan dan antarmuka Microsoft Word dalam pembelajaran Informatika kelas X. Pembelajaran dirancang agar murid tidak hanya mengenali fungsi aplikasi pengolah kata, tetapi juga mengeksplorasi bagian-bagian antarmuka dan menggunakannya untuk menghasilkan dokumen sederhana.</p>
+                                <p>Kegiatan berpusat pada dua aktivitas. Pertama, <i>Word Explorer Challenge</i> melalui LKPD untuk mengenali Ribbon, Tab, dan Quick Access Toolbar. Kedua, pembuatan <i>Digital Introduction Card</i> dengan menerapkan fitur dasar seperti Bold, ukuran dan warna huruf, serta perataan teks. Melalui rangkaian ini, saya ingin melihat bagaimana eksplorasi terbimbing dapat membantu murid memahami fungsi fitur sekaligus menggunakannya dalam konteks yang dekat dengan kehidupan mereka.</p>
+                                <div class="cy-meta">
+                                    <span><b>Mata pelajaran</b> Informatika</span>
+                                    <span><b>Fase / Kelas</b> E / X - 9 </span>
+                                    <span><b>Materi</b> Pengenalan dan Antarmuka Microsoft Word</span>
+                                    <span><b>Bab</b>Perangkat Pengolah Kata</span>    
+                                </div>
                             </div>
-                            <a href="https://drive.google.com/uc?export=download&id=1Wth3yI5veLU4f9yuaILrXdK3qMMqhkI-" download class="cycle-pdf-download">
-                                <span>⬇️</span> Download Modul Siklus 1
-                            </a>
-                        </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">B</span><span class="cy-acc-title">Rancangan dan Perencanaan Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Pembelajaran menggunakan model <i>Discovery Learning</i> dengan pendekatan pembelajaran mendalam melalui prinsip <i>Mindful, Meaningful,</i> dan <i>Joyful Learning</i>. Murid diajak mengamati contoh dokumen, mengidentifikasi fungsi fitur, mengeksplorasi antarmuka aplikasi, lalu menerapkannya dalam produk sederhana.</p>
+                                <p><b>Tujuan pembelajaran:</b></p>
+                                <ol>
+                                    <li>Menjelaskan sedikitnya tiga manfaat Microsoft Word dalam kegiatan sehari-hari.</li>
+                                    <li>Mengidentifikasi dan menjelaskan fungsi Ribbon, Tab, serta Quick Access Toolbar melalui aktivitas <i>Word Explorer Challenge</i>.</li>
+                                    <li>Membuat <i>Digital Introduction Card</i> dengan menerapkan fitur dasar Microsoft Word serta menyimpan dokumen dalam format .docx dan .pdf.</li>
+                                </ol>
+                                <p><b>Alur kegiatan (90 menit):</b></p>
+                                <ul>
+                                    <li><b>Pembukaan (15 menit):</b> salam, doa, presensi, kegiatan pemantik <i>Red Flag Green Flag</i>, mengamati contoh kartu, dan penyampaian tujuan.</li>
+                                    <li><b>Stimulasi (7 menit):</b> membandingkan dokumen dengan tampilan rapi dan kurang rapi, kemudian mendiskusikan manfaat Word.</li>
+                                    <li><b>Identifikasi masalah (5 menit):</b> merumuskan pertanyaan tentang cara membuat dokumen perkenalan yang rapi, menarik, dan mudah dibaca.</li>
+                                    <li><b>Pengumpulan data (15 menit):</b> mengeksplorasi Ribbon, Tab Home, Tab Insert, dan Quick Access Toolbar melalui LKPD.</li>
+                                    <li><b>Pengolahan data (20 menit):</b> membuat <i>Digital Introduction Card</i> yang memuat identitas dan informasi personal dengan menerapkan fitur dasar Word.</li>
+                                    <li><b>Verifikasi (10 menit):</b> memeriksa kelengkapan isi, kerapian, keterbacaan, penggunaan fitur, serta menyimpan hasil dalam format .docx dan .pdf.</li>
+                                    <li><b>Generalisasi (8 menit):</b> menyimpulkan manfaat Word untuk membuat tugas, laporan, surat, dan CV.</li>
+                                    <li><b>Penutup (10 menit):</b> refleksi diri dan pengumpulan LKPD serta produk.</li>
+                                </ul>
+                                <p><b>Asesmen:</b> <i>Assessment for Learning</i> melalui tanya jawab, observasi, dan LKPD; <i>Assessment of Learning</i> melalui rubrik produk <i>Digital Introduction Card</i>; serta <i>Assessment as Learning</i> melalui refleksi diri.</p>
+                                <p class="cy-note">Dokumen dan perangkat pembelajaran:</p>
+                                <div class="cy-docs">
+                                    <a href="#" target="_blank" rel="noopener">Modul Ajar — [tautkan file modul ajar]</a>
+                                    <a href="https://docs.google.com/document/d/12UT52o5WPZWclsoLKc1Oq0yVrizsJ-7J/edit" target="_blank" rel="noopener">LKPD Word Explorer Challenge</a>
+                                    <a href="https://docs.google.com/document/d/1ZsRSvKwtEe16ibBQ9BKctyfYoTMWziBM/edit?usp=sharing&ouid=103439907895642456658&rtpof=true&sd=true" target="_blank" rel="noopener">Contoh Digital Introduction Card</a>
+                                    <a href="https://docs.google.com/document/d/1f6T9W7v54eSNh8oIlhumANTuLcVtp88X/edit?usp=sharing&ouid=103439907895642456658&rtpof=true&sd=true" target="_blank" rel="noopener">Lembar Observasi</a>
+                                    <a href="https://canva.link/slidemateripengenalanword" target="_blank" rel="noopener">Media Presentasi — Pengenalan Microsoft Word</a>
+                                    <a href="https://app.sli.do/event/w6YDLhYyKBN2wzCR3NCRyk" target="_blank" rel="noopener">Media Refleksi — Slido</a>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">C</span><span class="cy-acc-title">Analisis Rancangan Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Tujuan pembelajaran, aktivitas, dan asesmen dalam modul memiliki keterkaitan yang cukup jelas. Tujuan mengenali antarmuka diterapkan melalui <i>Word Explorer Challenge</i>, sedangkan tujuan menerapkan fitur dasar diwujudkan melalui pembuatan <i>Digital Introduction Card</i>. Dengan demikian, murid tidak berhenti pada kegiatan menyebutkan nama fitur, tetapi juga diminta menggunakannya dalam sebuah produk.</p>
+                                <p>Urutan kegiatan bergerak dari mengamati contoh, mengeksplorasi fitur, membuat produk, memeriksa hasil, hingga menyimpulkan manfaat aplikasi. Alur ini mendukung proses penemuan terbimbing. Asesmen juga dirancang pada tiga tahap: proses eksplorasi diamati melalui LKPD dan tanya jawab, hasil belajar dinilai melalui produk, sedangkan pemahaman murid terhadap proses belajarnya ditinjau melalui refleksi diri.</p>
+                                <p>Bagian yang perlu saya cermati kembali adalah kecukupan waktu. Kegiatan inti memuat eksplorasi antarmuka dan pembuatan produk dalam satu pertemuan. Keduanya membutuhkan waktu praktik yang berbeda-beda sesuai pengalaman murid menggunakan aplikasi. Karena itu, kesesuaian alokasi waktu perlu ditinjau dengan membandingkan rancangan dan pelaksanaan sebenarnya.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">D</span><span class="cy-acc-title">Analisis Materi Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Materi disusun dari pengenalan fungsi aplikasi pengolah kata, dilanjutkan dengan pengenalan bagian antarmuka, kemudian penerapan fitur dasar untuk membuat dokumen. Urutan tersebut memberi jembatan dari pemahaman konseptual menuju keterampilan prosedural. Pengenalan Ribbon, Tab, dan Quick Access Toolbar menjadi dasar sebelum murid menggunakan fitur pemformatan dalam produk.</p>
+                                <p>Contoh penerapan melalui <i>Digital Introduction Card</i> membuat materi lebih kontekstual karena fitur Word digunakan untuk menyusun informasi yang dekat dengan kehidupan murid. Fitur yang diterapkan meliputi Bold, pengaturan ukuran dan warna huruf, serta alignment. Materi juga mengarahkan murid memahami penyimpanan dokumen dalam format .docx dan .pdf, sehingga pembelajaran mencakup proses membuat, mengolah, dan menyimpan dokumen.</p>
+                                <p>Hal yang perlu diperhatikan adalah konsistensi cakupan materi dan penamaan bab pada modul. Identitas modul mencantumkan Bab I / Sistem Komputer, sedangkan topik pertemuan berfokus pada pengenalan Microsoft Word. Keterkaitan keduanya perlu diperjelas dalam dokumen agar posisi materi pengolah kata dalam lingkup pembelajaran Informatika tidak membingungkan.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">E</span><span class="cy-acc-title">Analisis Media Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Media yang tercantum dalam rancangan meliputi LKPD <i>Word Explorer Challenge</i>, tayangan Canva, contoh <i>Digital Introduction Card</i>, aplikasi pengolah kata, serta Slido untuk refleksi. Media-media tersebut memiliki fungsi yang berbeda dan saling melengkapi: tayangan dan contoh produk memberi gambaran awal, LKPD memandu eksplorasi fitur, aplikasi menjadi ruang praktik, sedangkan Slido digunakan untuk menghimpun refleksi.</p>
+                                <p>LKPD menjadi media utama dalam kegiatan eksplorasi karena mengarahkan murid untuk mengenali bagian antarmuka secara bertahap. Produk kartu perkenalan kemudian menjadi konteks penerapan fitur yang telah dieksplorasi. Namun, efektivitas media tidak cukup dinilai dari kelengkapan perangkat yang direncanakan. Perlu dilihat kembali apakah instruksi LKPD dapat dipahami, apakah contoh produk membantu murid bekerja, dan apakah media refleksi benar-benar digunakan sesuai tujuan pada saat pelaksanaan.</p>
+                                <p class="cy-note">Catatan: modul mencantumkan Microsoft Word atau Google Docs sebagai aplikasi yang dapat digunakan. Sesuaikan analisis akhir dengan aplikasi yang benar-benar digunakan saat praktik mengajar.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">F</span><span class="cy-acc-title">Video Pelaksanaan Praktik Mengajar Mandiri</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p class="cy-note">Dokumentasi video pelaksanaan praktik mengajar mandiri pada siklus ini.</p>
+                                <div class="cy-videos" data-cy-videos="1">
+                                    <div class="cy-video-embed">
+                                        <iframe
+                                            src="https://www.youtube-nocookie.com/embed/V3cCeNiJ_8w"
+                                            title="Video Praktik Mengajar Mandiri Siklus 1 — Pengenalan Microsoft Word"
+                                            loading="lazy"
+                                            referrerpolicy="strict-origin-when-cross-origin"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                    <p><a href="https://youtu.be/V3cCeNiJ_8w" target="_blank" rel="noopener">Tonton video di YouTube</a></p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">G</span><span class="cy-acc-title">Analisis Video Pelaksanaan</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Analisis video perlu dilakukan dengan membandingkan rancangan pembelajaran dan kejadian yang benar-benar tampak selama praktik. Beberapa hal yang perlu saya amati kembali adalah:</p>
+                                <ul class="cy-lens">
+                                    <li>Bagaimana saya membuka pembelajaran dan menghubungkan contoh dokumen dengan tujuan kegiatan.</li>
+                                    <li>Seberapa jelas instruksi saat murid mengerjakan <i>Word Explorer Challenge</i> dan membuat <i>Digital Introduction Card</i>.</li>
+                                    <li>Bagaimana saya memberikan bantuan ketika murid mengalami kesulitan mengenali atau menggunakan fitur Word.</li>
+                                    <li>Kesesuaian waktu pelaksanaan dengan alokasi pada modul, terutama saat eksplorasi dan pembuatan produk.</li>
+                                    <li>Bagaimana interaksi, pertanyaan, dan respons murid ditindaklanjuti selama pembelajaran.</li>
+                                    <li>Bagian pembelajaran yang perlu dipertahankan atau diperbaiki pada praktik mengajar berikutnya.</li>
+                                </ul>
+                                <div class="cy-ph">
+                                    <span class="cy-ph-tag">Menunggu analisis video</span>
+                                    <p><b>Temuan reflektif.</b> Lengkapi setelah menonton ulang rekaman. Cantumkan menit atau momen spesifik sebagai bukti, misalnya ketika memberi instruksi, mendampingi praktik, atau mengelola perpindahan kegiatan. Jangan mengisi temuan berdasarkan perkiraan jika belum terlihat dalam video.</p>
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 </div>
             </div>
 
-            <!-- ═══ SIKLUS 2 ═══ -->
-            <div class="cycle-item">
+           <!-- ═══ SIKLUS 2 — Sistem Komputer 1 ═══ -->
+            <div class="cycle-item cy c2" id="siklus-2">
                 <div class="cycle-dot"></div>
                 <div class="card cycle-card">
                     <div class="cycle-header">
                         <div>
-                            <p style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent2);margin-bottom:0.3rem;">SIKLUS 02</p>
-                            <h3 class="cycle-title">Mengembangkan Kepercayaan Diri Mengajar</h3>
+                            <p class="cy-kicker"><i class="fas fa-desktop"></i> SIKLUS 02</p>
+                            <h3 class="cycle-title">Sistem Komputer: Komponen, Von Neumann, dan IPO</h3>
                         </div>
-                        <span class="cycle-badge badge-s2">Penguatan &amp; Adaptasi</span>
-                    </div>
-                    <p class="cycle-desc">
-                        Pada siklus kedua, saya mulai lebih percaya diri dalam mengelola pembelajaran materi Fungsi IF pada Microsoft Excel. Guru Pamong masih memberikan masukan dan penguatan, namun intervensi yang dilakukan tidak sebanyak pada siklus sebelumnya. Saya mulai mampu memimpin jalannya pembelajaran, memberikan instruksi yang lebih jelas, serta merespons pertanyaan peserta didik secara mandiri.
-                    </p>
-                    <div class="cycle-stats">
-                        <div class="stat-box">
-                            <div class="stat-num" style="color:var(--accent2)">75%</div>
-                            <div class="stat-label"><b>Kemandirian</b></div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-num" style="color:var(--accent)">Sedang</div>
-                            <div class="stat-label">Intervensi Guru Pamong</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-num" style="color:var(--accent2)">78%</div>
-                            <div class="stat-label"><b>Partisipasi Siswa</b></div>
-                        </div>
-                    </div>
-                    <div class="progress-row">
-                        <span style="font-size:0.73rem;color:var(--muted);min-width:90px">Kemandirian</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="background:linear-gradient(135deg, #f472b6, #34d36e)" data-width="75"></div>
-                        </div>
-                        <span style="font-family:'JetBrains Mono',monospace;font-size:0.73rem;color:var(--accent2)">75%</span>
+                        <span class="cycle-badge cy-badge">Sistem Komputer</span>
                     </div>
 
-                    <!-- VIDEO SIKLUS 2 -->
-                    <div class="cycle-media-section">
-                        <div class="cycle-media-label">
-                            <span class="media-label-icon">🎬</span>
-                            <span>Video Pembelajaran — Siklus 2</span>
-                        </div>
-                        <button class="cycle-pdf-toggle" onclick="toggleVideo(this)" data-videoid="1raf6XCNqqw">
-                            <span class="pdf-toggle-icon">▶️</span>
-                            <span class="pdf-toggle-text">Tonton Video Pembelajaran</span>
-                            <span class="pdf-toggle-arrow">▾</span>
-                        </button>
-                        <div class="cycle-video-wrap" style="display:none;">
-                            <div class="yt-thumb" data-videoid="1raf6XCNqqw" onclick="loadYT(this)">
-                                <img src="https://i.ytimg.com/vi/1raf6XCNqqw/maxresdefault.jpg"
-                                    onerror="this.src='https://i.ytimg.com/vi/1raf6XCNqqw/hqdefault.jpg'"
-                                    alt="Thumbnail Video Siklus 2">
-                                <div class="yt-play-btn">
-                                    <svg viewBox="0 0 68 48" width="68" height="48">
-                                        <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#ff0000"/>
-                                        <path d="M45 24 27 14v20" fill="#fff"/>
-                                    </svg>
+                    <p class="cycle-desc cy-fokus"><b>Fokus:</b> Membangun pemahaman tentang komponen penyusun sistem komputer dan hubungan mekanisme Input–Process–Storage–Output (IPSO) dengan arsitektur Von Neumann melalui strategi Reciprocal Teaching.</p>
+
+                    <div class="cy-accs">
+                        <details class="cy-acc" open>
+                            <summary><span class="cy-acc-letter">A</span><span class="cy-acc-title">Gambaran Praktik Mengajar</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Pada siklus kedua praktik mengajar mandiri, pembelajaran Informatika berfokus pada materi Sistem Komputer. Materi mengajak murid memahami hal-hal yang bekerja di balik aktivitas komputer yang sudah akrab bagi mereka, mulai dari menekan tombol keyboard hingga informasi muncul pada monitor.</p>
+                                <p>Pembelajaran tidak hanya diarahkan pada pengenalan hardware, software, dan brainware, tetapi juga pada hubungan antarkomponen dalam proses pengolahan data. Murid mempelajari mekanisme Input, Process, Storage, dan Output serta keterkaitannya dengan arsitektur Von Neumann. Aktivitas dirancang menggunakan strategi <i>Reciprocal Teaching</i> melalui tahapan Predicting, Questioning, Clarifying, dan Summarizing. Dengan strategi ini, murid diberi ruang untuk membuat prediksi, menyusun pertanyaan, bertukar penjelasan dengan kelompok lain, dan merangkum pemahaman menggunakan bahasa sendiri.</p>
+                                <div class="cy-meta">
+                                    <span><b>Mata pelajaran</b> Informatika</span>
+                                    <span><b>Fase / Kelas</b> E / X - 9 </span>
+                                    <span><b>Materi</b> Komputer dan Komponen Penyusunnya, Arsitektur Von Neumann, dan Mekanisme IPO</span>
+                                    <span><b>Bab</b>Sistem Komputer</span>            
                                 </div>
                             </div>
-                            <iframe class="yt-iframe" style="display:none;" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                    </div>
+                        </details>
 
-                    <!-- MODUL SIKLUS 2 -->
-                    <div class="cycle-media-section">
-                        <div class="cycle-media-label">
-                            <span class="media-label-icon">📄</span>
-                            <span>Modul Ajar — Siklus 2</span>
-                        </div>
-                        <div class="cycle-pdf-box">
-                            <button class="cycle-pdf-toggle" onclick="togglePDF(this)"
-                               data-pdf="https://drive.google.com/file/d/1qRYFxsGCNMSYuGPWAXfuvRTwtqivCDYP/preview">
-                                <span class="pdf-toggle-icon">📋</span>
-                                <span class="pdf-toggle-text">Lihat Preview Modul</span>
-                                <span class="pdf-toggle-arrow">▾</span>
-                            </button>
-                            <div class="cycle-pdf-preview" style="display:none;">
-                                <iframe src="" frameborder="0" allow="autoplay"></iframe>
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">B</span><span class="cy-acc-title">Rancangan dan Perencanaan Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Model pembelajaran yang digunakan adalah <i>Reciprocal Teaching</i> dengan pendekatan <i>Mindful, Meaningful,</i> dan <i>Joyful Learning</i>. Strategi pembelajaran mencakup pembelajaran kontekstual, eksplorasi, simulasi, diskusi teman sebaya, pemecahan masalah, dan refleksi.</p>
+                                <p><b>Tujuan pembelajaran:</b></p>
+                                <ol>
+                                    <li>Menjelaskan pengertian komputer, sistem komputer, serta komponen hardware, software, dan brainware beserta fungsi atau perannya.</li>
+                                    <li>Mengidentifikasi komponen hardware berdasarkan fungsi Input, Process, Storage, dan Output.</li>
+                                    <li>Menjelaskan mekanisme Input, Process, Storage, dan Output dengan menguraikan alur pengolahan data secara runtut.</li>
+                                    <li>Menghubungkan mekanisme IPO dengan arsitektur Von Neumann melalui keterkaitan perangkat input, CPU/process, memory, dan perangkat output.</li>
+                                    <li>Menyusun minimal tiga pertanyaan yang relevan dan bermakna mengenai sistem komputer.</li>
+                                    <li>Mengklarifikasi pemahaman melalui bantuan kelompok lain dan sumber belajar yang tersedia.</li>
+                                    <li>Menyusun rangkuman dengan bahasa sendiri yang memuat pengertian sistem komputer, fungsi CPU, dan alur pengolahan data.</li>
+                                </ol>
+                                <p><b>Alur kegiatan pembelajaran (80 menit):</b></p>
+                                <ul>
+                                    <li><b>Pembukaan (5 menit):</b> salam, doa, presensi, pengondisian kelompok di laboratorium komputer, pertanyaan pemantik tentang proses dari keyboard hingga monitor, serta penyampaian tujuan dan strategi pembelajaran.</li>
+                                    <li><b>Predicting (5 menit):</b> mengamati stimulus dan menuliskan prediksi tentang proses serta komponen yang bekerja ketika tombol keyboard ditekan hingga informasi tampil di monitor.</li>
+                                    <li><b>Membangun pemahaman (20 menit):</b> menyimak materi tentang komputer, sistem komputer, hardware, software, brainware, fungsi hardware berdasarkan IPSO, sistem operasi, jenis komputer, dan hubungan IPO dengan arsitektur Von Neumann. Murid mencatat informasi penting dan memeriksa kembali prediksi awal.</li>
+                                    <li><b>Questioning (10 menit):</b> mengidentifikasi bagian materi yang belum dipahami dan menyusun minimal tiga pertanyaan untuk didiskusikan dalam kelompok.</li>
+                                    <li><b>Clarifying (15 menit):</b> memilih dua pertanyaan, bertukar pertanyaan dengan kelompok lain, mencari penjelasan melalui diskusi dan sumber belajar, lalu mencatat hasil klarifikasi.</li>
+                                    <li><b>Menghubungkan konsep (10 menit):</b> melengkapi alur Input → Process → Storage → Output beserta contoh komponen dan proses yang terjadi pada setiap tahap.</li>
+                                    <li><b>Summarizing (10 menit):</b> merangkum pengertian sistem komputer, fungsi CPU, dan alur pengolahan data menggunakan bahasa sendiri.</li>
+                                    <li><b>Penutup (15 menit):</b> menyimpulkan materi, menghubungkan prediksi awal dengan pemahaman setelah pembelajaran, memberikan penguatan dan apresiasi, serta menyampaikan gambaran pembelajaran berikutnya.</li>
+                                </ul>
+                                <p><b>Asesmen:</b> <i>Assessment for Learning</i> melalui observasi proses dan pengerjaan LKPD; <i>Assessment of Learning</i> melalui penilaian hasil kerja LKPD; serta <i>Assessment as Learning</i> melalui refleksi diri mengenai kemandirian belajar.</p>
+                                <p class="cy-note">Dokumen dan perangkat pembelajaran:</p>
+                                <div class="cy-docs">
+                                    <a href="#" target="_blank" rel="noopener">Modul Ajar Sistem Komputer 1 — [tautkan file modul ajar]</a>
+                                    <a href="https://canva.link/siskom-pert-1-siklus-1" target="_blank" rel="noopener">Slide Presentasi — Sistem Komputer</a>
+                                    <a href="https://drive.google.com/file/d/12mAsXsLoH2E6wn-aRaCBx2O81pmSxEUV/view?usp=drive_link" target="_blank" rel="noopener">LKPD Sistem Komputer</a>
+                                </div>
                             </div>
-                            <a href="https://drive.google.com/uc?export=download&id=1qRYFxsGCNMSYuGPWAXfuvRTwtqivCDYP" target="_blank" class="cycle-pdf-download">
-                                <span>⬇️</span> Download Modul Siklus 2
-                            </a>
-                        </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">C</span><span class="cy-acc-title">Analisis Rancangan Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Rancangan pembelajaran memiliki keterkaitan antara tujuan, aktivitas, strategi, dan asesmen. Tujuan memahami komponen serta mekanisme sistem komputer dibangun melalui penjelasan materi dan pengamatan stimulus, kemudian diperiksa kembali melalui kegiatan menghubungkan konsep pada LKPD. Sementara itu, tujuan menyusun pertanyaan, mengklarifikasi pemahaman, dan merangkum materi secara langsung diterapkan melalui empat tahapan utama <i>Reciprocal Teaching</i>.</p>
+                                <p>Urutan Predicting, Questioning, Clarifying, dan Summarizing memberi alur bagi murid untuk bergerak dari pengetahuan awal menuju pemahaman yang diperiksa dan disusun kembali. Tahap Clarifying juga membuka ruang bagi teman sebaya sebagai sumber belajar, bukan hanya menempatkan guru sebagai satu-satunya sumber jawaban. Hal ini sejalan dengan tujuan pembelajaran yang menekankan kemampuan bertanya, mencari informasi, dan menjelaskan kembali konsep.</p>
+                                <p>Asesmen dirancang untuk melihat proses maupun hasil. LKPD dan lembar observasi digunakan selama kegiatan, hasil kerja LKPD menjadi dasar penilaian akhir, sedangkan refleksi diri diarahkan untuk melihat kemandirian belajar. Hal yang perlu diperhatikan adalah padatnya cakupan materi dan banyaknya tahapan dalam alokasi 80 menit. Pelaksanaan perlu ditinjau untuk melihat apakah waktu diskusi, klarifikasi, dan penyusunan rangkuman cukup bagi murid membangun pemahaman, bukan sekadar menyelesaikan setiap bagian LKPD.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">D</span><span class="cy-acc-title">Analisis Materi Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Materi disusun dari konsep umum menuju hubungan proses yang lebih khusus. Pembahasan dimulai dari pengertian komputer dan sistem komputer, dilanjutkan dengan komponen hardware, software, dan brainware, kemudian jenis komputer, mekanisme Input–Process–Storage–Output, serta hubungan mekanisme tersebut dengan arsitektur Von Neumann. Urutan ini membantu murid mengenali komponen terlebih dahulu sebelum memahami peran dan keterhubungannya dalam pengolahan data.</p>
+                                <p>Konteks pembelajaran menggunakan aktivitas sederhana, yaitu menekan tombol keyboard hingga informasi tampil pada monitor. Contoh ini relevan karena berangkat dari pengalaman murid menggunakan komputer. Dari aktivitas tersebut, murid diarahkan untuk mengidentifikasi perangkat input, proses yang berlangsung pada CPU, penyimpanan dalam memori, dan keluaran melalui perangkat output.</p>
+                                <p>Materi juga memuat istilah yang perlu dibedakan secara cermat, terutama mekanisme IPO dan urutan Input–Process–Storage–Output yang digunakan dalam modul. Dalam penjelasan, hubungan antara proses, penyimpanan, dan keluaran perlu dibuat jelas agar murid tidak memahami keempatnya sebagai tahapan yang selalu berlangsung secara kaku. Pengaitan dengan arsitektur Von Neumann melalui input device, CPU/process, memory, dan output device menjadi bagian penting untuk menunjukkan hubungan antarkomponen.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">E</span><span class="cy-acc-title">Analisis Media Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Media yang direncanakan meliputi slide presentasi, LKPD, serta komputer atau laptop di laboratorium komputer. Slide digunakan untuk menampilkan stimulus dan menjelaskan konsep sistem komputer, hardware, software, brainware, mekanisme IPO, serta arsitektur Von Neumann. LKPD menjadi panduan bagi murid untuk mencatat prediksi, menyusun pertanyaan, melakukan klarifikasi, menghubungkan konsep, dan menuliskan rangkuman.</p>
+                                <p>Penggunaan LKPD selaras dengan strategi <i>Reciprocal Teaching</i> karena setiap tahap pembelajaran memiliki aktivitas dan ruang pencatatan yang jelas. Komputer atau laptop di laboratorium mendukung pengamatan perangkat dan akses terhadap materi maupun simulasi. Meskipun demikian, keberadaan media belum otomatis menunjukkan efektivitasnya. Hal yang perlu ditinjau dari pelaksanaan adalah apakah tampilan slide membantu murid memahami hubungan antarkomponen, apakah instruksi LKPD cukup jelas untuk mengarahkan diskusi, dan bagaimana fasilitas laboratorium mendukung kegiatan kelompok.</p>
+                                <p class="cy-note">Analisis efektivitas akhir perlu dilengkapi dengan bukti pelaksanaan, seperti bagian media yang digunakan, respons murid, atau kendala yang tampak selama pembelajaran.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">F</span><span class="cy-acc-title">Video Pelaksanaan Praktik Mengajar Mandiri</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p class="cy-note">Dokumentasi video praktik mengajar mandiri Siklus 2.</p>
+                                <div class="cy-videos" data-cy-videos="2"></div>
+                                <p class="cy-note">Tautan video pelaksanaan belum diberikan. Tambahkan sematan video setelah tautan dokumentasi tersedia.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">G</span><span class="cy-acc-title">Analisis Video Pelaksanaan</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Analisis video diarahkan untuk melihat bagaimana strategi <i>Reciprocal Teaching</i> benar-benar berlangsung di kelas dan bagaimana murid membangun pemahaman melalui setiap tahap. Hal-hal yang perlu diamati meliputi:</p>
+                                <ul class="cy-lens">
+                                    <li>Bagaimana pertanyaan pemantik menghubungkan pengalaman murid menggunakan komputer dengan materi sistem komputer.</li>
+                                    <li>Bagaimana saya menyampaikan konsep hardware, software, brainware, IPSO, dan arsitektur Von Neumann agar hubungan antarkonsep dapat dipahami.</li>
+                                    <li>Bagaimana instruksi pada tahap Predicting dan Questioning disampaikan serta ditindaklanjuti.</li>
+                                    <li>Bagaimana proses pertukaran pertanyaan dan klarifikasi antarkelompok berlangsung pada tahap Clarifying.</li>
+                                    <li>Bagaimana saya mendampingi murid ketika muncul jawaban atau pemahaman yang belum tepat.</li>
+                                    <li>Apakah alokasi waktu memberi kesempatan yang cukup bagi murid untuk menghubungkan konsep dan menyusun rangkuman.</li>
+                                    <li>Bagaimana penutup mengaitkan prediksi awal dengan pemahaman murid setelah pembelajaran.</li>
+                                </ul>
+                                <div class="cy-ph">
+                                    <span class="cy-ph-tag">Menunggu analisis video</span>
+                                    <p><b>Temuan reflektif.</b> Lengkapi setelah menonton rekaman. Cantumkan menit atau momen spesifik yang menunjukkan pelaksanaan tahapan Reciprocal Teaching, interaksi murid, cara saya memberikan penguatan, serta bagian yang perlu diperbaiki. Hindari menyimpulkan keberhasilan strategi hanya berdasarkan rancangan pembelajaran.</p>
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 </div>
             </div>
 
-            <!-- ═══ SIKLUS 3 ═══ -->
-            <div class="cycle-item">
+            <!-- ═══ SIKLUS 3 — Mekanisme Kerja Komputer dan Simulasi IPO ═══ -->
+            <div class="cycle-item cy c3" id="siklus-3">
                 <div class="cycle-dot"></div>
                 <div class="card cycle-card">
                     <div class="cycle-header">
                         <div>
-                            <p style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent3);margin-bottom:0.3rem;">SIKLUS 03</p>
-                            <h3 class="cycle-title">Pengajaran Mandiri dan Reflektif</h3>
+                            <p class="cy-kicker"><i class="fas fa-memory"></i> SIKLUS 03</p>
+                            <h3 class="cycle-title">Mekanisme Kerja Komputer dan Simulasi IPO</h3>
                         </div>
-                        <span class="cycle-badge badge-s3">Kemandirian &amp; Profesionalisme</span>
-                    </div>
-                    <p class="cycle-desc">
-                        Siklus ketiga menjadi tahap ketika saya memperoleh kesempatan untuk mengelola pembelajaran secara lebih mandiri pada materi Algoritma dan Pemrograman. Guru Pamong berperan sebagai pengamat dan pemberi umpan balik setelah pembelajaran berlangsung. Saya mampu merencanakan, melaksanakan, dan mengevaluasi pembelajaran secara lebih percaya diri serta menyesuaikan strategi mengajar dengan kebutuhan peserta didik.
-                    </p>
-                    <div class="cycle-stats">
-                        <div class="stat-box">
-                            <div class="stat-num" style="color:var(--accent)">95%</div>
-                            <div class="stat-label"><b>Kemandirian</b></div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-num" style="color:var(--accent2)">Minimal</div>
-                            <div class="stat-label">Intervensi GP</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-num" style="color:var(--accent3)">90%</div>
-                            <div class="stat-label"><b>Partisipasi Siswa</b></div>
-                        </div>
-                    </div>
-                    <div class="progress-row">
-                        <span style="font-size:0.73rem;color:var(--muted);min-width:90px">Kemandirian</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="background:linear-gradient(135deg,#34d36e, #f472b6)" data-width="95"></div>
-                        </div>
-                        <span style="font-family:'JetBrains Mono',monospace;font-size:0.73rem;color:var(--accent3)">95%</span>
+                        <span class="cycle-badge cy-badge">Sistem Komputer 2</span>
                     </div>
 
-                    <!-- VIDEO SIKLUS 3 -->
-                    <div class="cycle-media-section">
-                        <div class="cycle-media-label">
-                            <span class="media-label-icon">🎬</span>
-                            <span>Video Pembelajaran — Siklus 3</span>
-                        </div>
-                        <button class="cycle-pdf-toggle" onclick="toggleVideo(this)" data-videoid="uw_DhI-mXAc">
-                            <span class="pdf-toggle-icon">▶️</span>
-                            <span class="pdf-toggle-text">Tonton Video Pembelajaran 1</span>
-                            <span class="pdf-toggle-arrow">▾</span>
-                        </button> 
-                        <div class="cycle-video-wrap" style="display:none;">
-                            <div class="yt-thumb" data-videoid="uw_DhI-mXAc" onclick="loadYT(this)">
-                                <img src="https://i.ytimg.com/vi/uw_DhI-mXAc/maxresdefault.jpg"
-                                    onerror="this.src='https://i.ytimg.com/vi/uw_DhI-mXAc/hqdefault.jpg'"
-                                    alt="Thumbnail Video Siklus 3">
-                                <div class="yt-play-btn">
-                                    <svg viewBox="0 0 68 48" width="68" height="48">
-                                        <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#ff0000"/>
-                                        <path d="M45 24 27 14v20" fill="#fff"/>
-                                    </svg>
+                    <p class="cycle-desc cy-fokus"><b>Fokus:</b> Penerapan konsep Input, Process, Storage, dan Output melalui simulasi, analisis permasalahan, serta perancangan workstation.</p>
+
+                    <div class="cy-accs">
+                        <details class="cy-acc" open>
+                            <summary><span class="cy-acc-letter">A</span><span class="cy-acc-title">Gambaran Praktik Mengajar</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Pada siklus ketiga praktik mengajar mandiri, pembelajaran Informatika berfokus pada materi Mekanisme Kerja Komputer dan Simulasi IPO. Materi ini merupakan kelanjutan dari pertemuan sebelumnya ketika murid telah mempelajari komponen penyusun komputer, arsitektur Von Neumann, dan konsep Input, Process, Output.</p>
+                                <p>Pada pertemuan ini, murid diarahkan memahami bagaimana komponen-komponen komputer saling bekerja dalam satu alur. Pembelajaran dikaitkan dengan aktivitas sehari-hari, seperti mengetik dan mencetak dokumen, bermain game sambil streaming, serta menonton video.</p>
+                                <p>Murid tidak hanya mempelajari konsep melalui materi, tetapi juga terlibat dalam simulasi IPO berbasis website, simulasi ALU, analisis kasus video yang tidak menampilkan gambar, hingga kegiatan Rakit Workstation. Rangkaian ini memberi kesempatan menerapkan konsep sekaligus mengembangkan kemandirian dalam menyelesaikan aktivitas belajar.</p>
+                                <div class="cy-meta">
+                                    <span><b>Mata pelajaran</b> Informatika</span>
+                                    <span><b>Fase / Kelas</b> E / X - 9 </span>
+                                    <span><b>Materi</b> Mekanisme Kerja Komputer dan Simulasi IPO</span>
+                                    <span><b>Bab</b>Sistem Komputer</span> 
                                 </div>
                             </div>
-                            <iframe class="yt-iframe" style="display:none;" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                    </div>
+                        </details>
 
-                    <div class="cycle-media-section">
-                        <button class="cycle-pdf-toggle" onclick="toggleVideo(this)" data-videoid="dg-9TGpLUbI">
-                            <span class="pdf-toggle-icon">▶️</span>
-                            <span class="pdf-toggle-text">Tonton Video Pembelajaran 2</span>
-                            <span class="pdf-toggle-arrow">▾</span>
-                        </button> 
-                        <div class="cycle-video-wrap" style="display:none;">
-                            <div class="yt-thumb" data-videoid="dg-9TGpLUbI" onclick="loadYT(this)">
-                                <img src="https://i.ytimg.com/vi/dg-9TGpLUbI/maxresdefault.jpg"
-                                    onerror="this.src='https://i.ytimg.com/vi/dg-9TGpLUbI/hqdefault.jpg'"
-                                    alt="Thumbnail Video Siklus 3">
-                                <div class="yt-play-btn">
-                                    <svg viewBox="0 0 68 48" width="68" height="48">
-                                        <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#ff0000"/>
-                                        <path d="M45 24 27 14v20" fill="#fff"/>
-                                    </svg>
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">B</span><span class="cy-acc-title">Rancangan dan Perencanaan Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Rancangan menggunakan model <i>Reciprocal Teaching</i> dengan pendekatan <i>Mindful, Meaningful,</i> dan <i>Joyful Learning</i>. Kegiatan dirancang agar murid mencoba, mencari informasi, menganalisis, bertanya, mengklarifikasi, dan merefleksikan proses belajarnya.</p>
+                                <p><b>Tujuan pembelajaran:</b></p>
+                                <ol>
+                                    <li>Menjelaskan mekanisme kerja komputer melalui tahapan Input, Process, Storage, dan Output.</li>
+                                    <li>Mengelompokkan komponen komputer berdasarkan tahapan IPO melalui simulasi website dengan ketepatan minimal 80%.</li>
+                                    <li>Menjelaskan hubungan CPU sebagai Process dengan komponen Output melalui simulasi ALU dan analisis kasus.</li>
+                                    <li>Menentukan komponen yang berkaitan dengan permasalahan video yang suaranya terdengar tetapi gambarnya tidak tampil.</li>
+                                    <li>Memilih komponen komputer sesuai kebutuhan dan menunjukkan alur IPO melalui kegiatan Rakit Workstation.</li>
+                                    <li>Mencoba menyelesaikan aktivitas, mencari informasi, memanfaatkan teman sebagai sumber klarifikasi, dan merefleksikan proses belajar.</li>
+                                </ol>
+                                <p><b>Alur kegiatan pembelajaran:</b></p>
+                                <div class="cy-table-wrap">
+                                    <table class="cy-table">
+                                        <thead><tr><th>Tahapan</th><th>Aktivitas utama</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>Pembukaan</td><td>Apersepsi, pertanyaan pemantik, dan penyampaian tujuan</td></tr>
+                                            <tr><td>Predicting</td><td>Memprediksi kondisi data ketika komputer mati sebelum dokumen disimpan</td></tr>
+                                            <tr><td>Materi</td><td>Mempelajari mekanisme kerja komputer melalui sumber belajar</td></tr>
+                                            <tr><td>Simulasi IPO</td><td>Mengelompokkan komponen dan menjalankan simulasi alur IPO</td></tr>
+                                            <tr><td>Analisis IPO</td><td>Menganalisis kasus suara video terdengar tetapi gambar tidak tampil</td></tr>
+                                            <tr><td>Questioning</td><td>Menyusun satu pertanyaan berdasarkan hal yang belum dipahami</td></tr>
+                                            <tr><td>Clarifying</td><td>Membaca pertanyaan teman, mencari informasi, dan memberikan klarifikasi</td></tr>
+                                            <tr><td>Summarizing</td><td>Memilih komponen workstation dan menyusun rangkuman</td></tr>
+                                            <tr><td>Reflection</td><td>Mengevaluasi pengalaman dan kemandirian belajar</td></tr>
+                                            <tr><td>Penutup</td><td>Menyimpulkan materi dan memberikan penguatan</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p><b>Asesmen:</b> <i>Assessment as Learning</i> melalui refleksi kemandirian belajar; <i>Assessment for Learning</i> melalui observasi proses selama aktivitas; <i>Assessment of Learning</i> melalui penilaian hasil simulasi IPO, analisis IPO, Rakit Workstation, dan rangkuman.</p>
+                                <p class="cy-note">Dokumen dan perangkat pembelajaran:</p>
+                                <div class="cy-docs">
+                                    <span class="cy-link-ph">Modul Ajar Sistem Komputer 2 — [tautkan file modul ajar]</span>
+                                    <a href="https://ipo-simulator-beta.vercel.app/" target="_blank" rel="noopener">Website IPO Explorer (media pembelajaran)</a>
+                                </div>
+                                <p class="cy-note">Perangkat lain yang digunakan: komputer/laptop, materi PDF, Canva, dan video pembelajaran yang tersedia pada website.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">C</span><span class="cy-acc-title">Analisis Rancangan Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Rancangan menunjukkan kesinambungan dengan pertemuan sebelumnya. Murid tidak lagi hanya diarahkan mengenali komponen komputer, tetapi mulai menggunakan pemahaman itu untuk menjelaskan hubungan antarkomponen dalam menjalankan suatu aktivitas.</p>
+                                <p>Kesesuaian tujuan dan aktivitas terlihat pada simulasi IPO untuk mengelompokkan komponen, simulasi ALU untuk memahami proses pada CPU, serta analisis kasus untuk menghubungkan gejala permasalahan dengan komponen terkait. Kegiatan Rakit Workstation memberi kesempatan menerapkan pemahaman berdasarkan kebutuhan pengguna.</p>
+                                <p>Model <i>Reciprocal Teaching</i> tampak melalui tahapan Predicting, Questioning, Clarifying, dan Summarizing. Tahapan ini memberi ruang bagi murid membangun pemahaman, mengidentifikasi hal yang belum diketahui, memanfaatkan teman sebagai sumber belajar, dan menyusun kembali informasi dengan bahasanya sendiri. Asesmen mencakup proses dan hasil, dan refleksi kemandirian belajar membantu melihat bagaimana murid menghadapi kesulitan.</p>
+                                <p>Bagian yang perlu saya cermati adalah pengelolaan waktu. Modul menetapkan alokasi 80 menit, sedangkan durasi yang tertulis eksplisit berjumlah 78 menit dan belum mencantumkan durasi Summarizing serta Reflection. Hal ini perlu diperiksa agar seluruh tahapan dapat terlaksana proporsional.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">D</span><span class="cy-acc-title">Analisis Materi Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Materi disusun bertahap: mekanisme kerja komputer, alur Input, Process, Storage, dan Output, identifikasi komponen, simulasi IPO, lalu analisis permasalahan dan perancangan workstation. Urutan ini membawa murid dari pemahaman konsep ke penerapan.</p>
+                                <p>Materi relevan dengan kehidupan murid karena memakai contoh yang dekat dengan pengalaman mereka: mengetik dokumen, menyimpan pekerjaan, mencetak tugas, bermain game, dan menonton video. Melalui kasus suara video terdengar tetapi gambar tidak muncul, murid diarahkan menganalisis hubungan antara CPU sebagai Process dan monitor sebagai Output.</p>
+                                <p>Kegiatan Rakit Workstation memperluas penerapan materi: murid mempertimbangkan kebutuhan penggunaan sebelum menentukan komponen. Dengan demikian pembelajaran tidak berhenti pada hafalan fungsi komponen, tetapi menekankan hubungan antarkomponen dan pemecahan masalah.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">E</span><span class="cy-acc-title">Analisis Media Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Media utama adalah website IPO Explorer, yang berfungsi sebagai ruang belajar virtual dengan materi, simulasi, analisis kasus, diskusi, dan refleksi dalam satu platform.</p>
+                                <p>Simulasi <i>drag and drop</i> membantu murid mengidentifikasi komponen berdasarkan tahapan IPO. Simulasi ALU memberi pengalaman visual tentang proses pada CPU, sedangkan video kasus menjadi stimulus analisis permasalahan. Fitur Rakit Workstation memungkinkan murid memilih komponen sesuai kebutuhan, misalnya PC Lab Sekolah, PC Gaming, atau PC Desain Grafis.</p>
+                                <p>Secara rancangan, website sesuai dengan karakteristik materi karena menghadirkan pengalaman belajar yang melibatkan simulasi dan analisis, tidak hanya teks. Efektivitasnya tetap perlu ditinjau dari pelaksanaan: kemudahan penggunaan, kejelasan instruksi, kelancaran akses, dan sejauh mana fitur membantu murid memahami mekanisme kerja komputer.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">F</span><span class="cy-acc-title">Video Pelaksanaan Praktik Mengajar Mandiri</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p class="cy-note">Dokumentasi video pelaksanaan praktik mengajar mandiri pada siklus ini.</p>
+                                <div class="cy-ph">
+                                    <span class="cy-ph-tag">Menunggu tautan video</span>
+                                    <p>Video Siklus 3 belum ditautkan. Setelah tersedia, ganti blok ini dengan <code>&lt;div class="cy-video-embed"&gt;&lt;iframe src="https://www.youtube-nocookie.com/embed/ID_VIDEO" ...&gt;&lt;/iframe&gt;&lt;/div&gt;</code> seperti pada Siklus 1.</p>
                                 </div>
                             </div>
-                            <iframe class="yt-iframe" style="display:none;" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">G</span><span class="cy-acc-title">Analisis Video Pelaksanaan</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Analisis dilakukan dengan membandingkan rancangan dan kejadian yang benar-benar tampak dalam video. Aspek yang akan saya amati:</p>
+                                <ul class="cy-lens">
+                                    <li><b>Pembukaan:</b> kejelasan apersepsi, penyampaian tujuan, dan pengondisian murid sebelum aktivitas.</li>
+                                    <li><b>Penggunaan website:</b> kejelasan instruksi dan pendampingan saat murid mengakses materi dan menjalankan simulasi IPO.</li>
+                                    <li><b>Pelaksanaan simulasi:</b> keterlibatan murid dalam mengelompokkan komponen, mengamati simulasi ALU, dan memahami alur kerja komputer.</li>
+                                    <li><b>Analisis permasalahan:</b> cara saya mengarahkan murid menghubungkan kasus dengan konsep IPO melalui pertanyaan pengarah.</li>
+                                    <li><b>Diskusi dan klarifikasi:</b> kesempatan murid bertanya, mencari informasi, dan menjelaskan kepada teman.</li>
+                                    <li><b>Pengelolaan pembelajaran:</b> pengaturan waktu, perpindahan antartahapan, dan respons saya terhadap kesulitan yang muncul.</li>
+                                    <li><b>Refleksi dan penutup:</b> penguatan pemahaman dan kesempatan murid mengevaluasi proses belajarnya.</li>
+                                </ul>
+                                <div class="cy-ph">
+                                    <span class="cy-ph-tag">Menunggu analisis video</span>
+                                    <p><b>Temuan reflektif.</b> Lengkapi setelah menonton ulang rekaman. Cantumkan menit atau momen spesifik, respons murid, dan tindakan saya sebagai bukti. Jangan mengisi temuan berdasarkan perkiraan jika belum terlihat dalam video, dan konfirmasi juga ketidaksesuaian durasi 80 vs 78 menit pada bagian C.</p>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SIKLUS 4 — Konsep Dasar Jaringan Komputer dan Konektivitas ═══ -->
+            <div class="cycle-item cy c4" id="siklus-4">
+                <div class="cycle-dot"></div>
+                <div class="card cycle-card">
+                    <div class="cycle-header">
+                        <div>
+                            <p class="cy-kicker"><i class="fas fa-network-wired"></i> SIKLUS 04</p>
+                            <h3 class="cycle-title">Konsep Dasar Jaringan Komputer dan Konektivitas</h3>
                         </div>
+                        <span class="cycle-badge cy-badge">Jaringan Komputer 1</span>
                     </div>
 
-                    <!-- MODUL SIKLUS 3 -->
-                    <div class="cycle-media-section">
-                        <div class="cycle-media-label">
-                            <span class="media-label-icon">📄</span>
-                            <span>Modul Ajar — Siklus 3</span>
-                        </div>
-                        <div class="cycle-pdf-box">
-                            <button class="cycle-pdf-toggle" onclick="togglePDF(this)"
-                                    data-pdf="https://drive.google.com/file/d/1YrBzQnJMbOBMMDd-XXpzrALamUd_Gek8/preview">
-                                <span class="pdf-toggle-icon">📋</span>
-                                <span class="pdf-toggle-text">Lihat Preview Modul</span>
-                                <span class="pdf-toggle-arrow">▾</span>
-                            </button>
-                            <div class="cycle-pdf-preview" style="display:none;">
-                                <iframe src="" frameborder="0" allow="autoplay"></iframe>
+                    <p class="cycle-desc cy-fokus"><b>Fokus:</b> Pemahaman konsep jaringan komputer, jenis jaringan, perbedaan koneksi kabel dan nirkabel, serta konektivitas jaringan lokal dan internet melalui investigasi perangkat di Labkom.</p>
+
+                    <div class="cy-accs">
+                        <details class="cy-acc" open>
+                            <summary><span class="cy-acc-letter">A</span><span class="cy-acc-title">Gambaran Praktik Mengajar</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Praktik mengajar mandiri pada siklus keempat membahas materi Konsep Dasar Jaringan Komputer dan Konektivitas untuk murid kelas X. Pembelajaran dilaksanakan di Laboratorium Komputer dengan memanfaatkan lingkungan jaringan yang tersedia sebagai sumber belajar.</p>
+                                <p>Pembelajaran berangkat dari pengalaman murid menggunakan komputer, Wi-Fi, dan internet dalam kehidupan sehari-hari. Namun, pengalaman tersebut belum tentu diikuti pemahaman mengenai perangkat dan proses yang memungkinkan komputer saling terhubung. Oleh karena itu, murid diajak mengamati jaringan secara langsung melalui kegiatan <i>Network Detective</i>.</p>
+                                <p>Dalam kegiatan tersebut, murid melakukan investigasi terhadap perangkat jaringan berdasarkan ciri fisik, lokasi, kabel yang terhubung, dan dugaan fungsinya. Perangkat yang diamati meliputi switch, access point, dan router. Hasil pengamatan kemudian digunakan untuk memahami konsep jaringan komputer, jenis jaringan berdasarkan cakupan wilayah, serta perbedaan koneksi kabel dan nirkabel.</p>
+                                <div class="cy-meta">
+                                    <span><b>Mata pelajaran</b> Informatika</span>
+                                    <span><b>Fase / Kelas</b> E / X - 9 </span>
+                                    <span><b>Materi</b> Konsep Dasar Jaringan Komputer dan Konektivitas </span>
+                                    <span><b>Bab</b>Jaringan Komputer dan Internet</span> 
+                                </div>
                             </div>
-                            <a href="https://drive.google.com/uc?export=download&id=1YrBzQnJMbOBMMDd-XXpzrALamUd_Gek8" target="_blank" class="cycle-pdf-download">
-                                <span>⬇️</span> Download Modul Siklus 3
-                            </a>
-                        </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">B</span><span class="cy-acc-title">Rancangan dan Perencanaan Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Pembelajaran dirancang menggunakan model <i>Discovery Learning</i> dengan pendekatan <i>Mindful, Meaningful,</i> dan <i>Joyful Learning</i>. Aktivitas utama berupa eksplorasi terbimbing melalui kartu misi <i>Network Detective</i>.</p>
+                                <p><b>Tujuan pembelajaran:</b></p>
+                                <ol>
+                                    <li>Menjelaskan pengertian, tujuan, dan manfaat jaringan komputer.</li>
+                                    <li>Mengidentifikasi jenis jaringan berdasarkan cakupan wilayah, yaitu PAN, LAN, MAN, WAN, dan internet.</li>
+                                    <li>Membedakan jaringan kabel dan nirkabel berdasarkan media transmisi dan karakteristik koneksinya.</li>
+                                    <li>Menjelaskan konektivitas jaringan lokal dan internet melalui diagram yang menggambarkan minimal tiga komponen jaringan beserta hubungan koneksinya.</li>
+                                </ol>
+                                <p><b>Alur kegiatan pembelajaran (<i>Discovery Learning</i>):</b></p>
+                                <div class="cy-table-wrap">
+                                    <table class="cy-table">
+                                        <thead><tr><th>Tahap</th><th>Aktivitas utama</th><th>Waktu</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>Pembukaan</td><td>Apersepsi, pertanyaan pemantik, penyampaian tujuan dan aturan eksplorasi</td><td>8 menit</td></tr>
+                                            <tr><td>Stimulation</td><td>Mengamati gambar perangkat dan menyampaikan dugaan awal</td><td>7 menit</td></tr>
+                                            <tr><td>Problem Statement</td><td>Merumuskan masalah dan memahami kartu misi</td><td>5 menit</td></tr>
+                                            <tr><td>Data Collection</td><td>Eksplorasi perangkat jaringan di Labkom</td><td>17 menit</td></tr>
+                                            <tr><td>Data Processing</td><td>Membandingkan temuan dan menghubungkan ciri perangkat dengan fungsinya</td><td>12 menit</td></tr>
+                                            <tr><td>Verification</td><td>Mengonfirmasi identitas perangkat dan konsep jaringan</td><td>11 menit</td></tr>
+                                            <tr><td>Generalization</td><td>Menyusun kesimpulan hasil investigasi</td><td>8 menit</td></tr>
+                                            <tr><td>Penutup</td><td>Refleksi, pengumpulan LKPD, dan penguatan</td><td>10 menit</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p><b>Asesmen:</b> refleksi diri, observasi proses selama investigasi, serta penilaian hasil kerja melalui LKPD dan kesimpulan jaringan.</p>
+                                <p class="cy-note">Dokumen dan perangkat pembelajaran:</p>
+                                <div class="cy-docs">
+                                    <span class="cy-link-ph">Modul Ajar Jaringan Komputer 1 — [tautkan file modul ajar]</span>
+                                    <span class="cy-link-ph">LKPD Network Detective — [tautkan file LKPD]</span>
+                                </div>
+                                <p class="cy-note">Media yang digunakan: lingkungan Labkom, foto perangkat jaringan, PPT, kartu misi <i>Network Detective</i>, dan LKPD <i>Network Detective</i>.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">C</span><span class="cy-acc-title">Analisis Rancangan Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Rancangan menunjukkan keterkaitan antara tujuan, aktivitas, dan asesmen. Murid tidak langsung diberikan nama dan fungsi perangkat jaringan, tetapi diarahkan untuk mengidentifikasi perangkat melalui pengamatan. Strategi ini memberi ruang bagi murid membangun dugaan berdasarkan bukti sebelum memperoleh konfirmasi konsep dari saya.</p>
+                                <p>Kegiatan <i>Network Detective</i> menjadi bagian utama yang menghubungkan pengalaman nyata murid dengan konsep jaringan komputer. Penggunaan lingkungan Labkom juga mendukung pembelajaran kontekstual karena murid dapat mengamati perangkat yang digunakan dalam jaringan sekolah secara langsung.</p>
+                                <p>Tahapan <i>Discovery Learning</i> telah disusun berurutan, mulai dari stimulasi, perumusan masalah, pengumpulan data, pengolahan data, verifikasi, hingga generalisasi. Asesmen proses dan hasil kerja diarahkan untuk melihat keterlibatan murid dalam investigasi serta pemahaman mereka terhadap konektivitas jaringan.</p>
+                                <p>Bagian yang perlu saya cermati adalah pengelolaan waktu. Alokasi waktu pada identitas modul adalah 2 × 40 menit atau 80 menit, sedangkan jumlah seluruh kegiatan yang memiliki keterangan waktu adalah 78 menit. Hal ini perlu diperiksa kembali pada dokumen rancangan.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">D</span><span class="cy-acc-title">Analisis Materi Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Materi disusun dari pengamatan konkret menuju pemahaman konseptual. Murid terlebih dahulu mengamati perangkat jaringan yang tersedia di Labkom, kemudian mengidentifikasi ciri dan dugaan fungsinya. Setelah itu, pembelajaran diarahkan pada pengertian jaringan komputer, tujuan dan manfaat jaringan, jenis jaringan berdasarkan cakupan wilayah, serta perbedaan jaringan kabel dan nirkabel.</p>
+                                <p>Urutan tersebut relevan dengan karakteristik materi yang membutuhkan pengenalan perangkat dan pemahaman hubungan antarkomponen. Materi juga dikaitkan dengan aktivitas yang dekat dengan kehidupan murid, seperti menggunakan Wi-Fi, mengakses internet, berbagi data, dan menggunakan komputer di Labkom.</p>
+                                <p>Pembahasan tidak berhenti pada pengenalan nama perangkat. Murid juga diarahkan memahami bagaimana komputer, perangkat jaringan, jaringan lokal, dan internet saling terhubung. Dengan demikian, materi memberikan gambaran awal mengenai konektivitas jaringan melalui objek yang dapat diamati secara langsung.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">E</span><span class="cy-acc-title">Analisis Media Pembelajaran</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Media pembelajaran yang digunakan:</p>
+                                <ul>
+                                    <li><b>Lingkungan Labkom:</b> sumber pengamatan langsung terhadap perangkat dan jalur konektivitas jaringan.</li>
+                                    <li><b>Foto perangkat jaringan:</b> memantik rasa ingin tahu dan membantu murid mengenali ciri perangkat.</li>
+                                    <li><b>PPT:</b> menyajikan konsep dasar, jenis jaringan, perbedaan kabel dan nirkabel, serta diagram konektivitas.</li>
+                                    <li><b>Kartu misi <i>Network Detective</i>:</b> memberikan arahan investigasi agar pengamatan murid lebih terstruktur.</li>
+                                    <li><b>LKPD <i>Network Detective</i>:</b> media pencatatan hasil pengamatan, dugaan fungsi, dan kesimpulan kelompok.</li>
+                                </ul>
+                                <p>Pemilihan media telah disesuaikan dengan tujuan pembelajaran. Lingkungan Labkom memberikan pengalaman konkret, sedangkan PPT dan diagram membantu menjelaskan hubungan antarkomponen yang tidak selalu dapat dipahami hanya melalui pengamatan fisik.</p>
+                                <p>Kartu misi dan LKPD juga mendukung kegiatan investigasi karena murid memiliki panduan mengenai hal-hal yang perlu diamati dan dicatat.</p>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">F</span><span class="cy-acc-title">Video Pelaksanaan Praktik Mengajar Mandiri</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p class="cy-note">Dokumentasi video pelaksanaan praktik mengajar mandiri pada materi Konsep Dasar Jaringan Komputer dan Konektivitas.</p>
+                                <div class="cy-ph">
+                                    <span class="cy-ph-tag">Menunggu tautan video</span>
+                                    <p>Video Siklus 4 belum ditautkan. Setelah tersedia, ganti blok ini dengan <code>&lt;div class="cy-video-embed"&gt;&lt;iframe src="https://www.youtube-nocookie.com/embed/ID_VIDEO" ...&gt;&lt;/iframe&gt;&lt;/div&gt;</code> seperti pada Siklus 1.</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="cy-acc">
+                            <summary><span class="cy-acc-letter">G</span><span class="cy-acc-title">Analisis Video Pelaksanaan</span><span class="cy-acc-arrow">▾</span></summary>
+                            <div class="cy-acc-body">
+                                <p>Analisis dilakukan dengan membandingkan rancangan dan kejadian yang benar-benar tampak dalam video. Aspek yang akan saya amati:</p>
+                                <ul class="cy-lens">
+                                    <li><b>Pembukaan dan apersepsi:</b> bagaimana saya menghubungkan pengalaman murid menggunakan Wi-Fi dan internet dengan permasalahan jaringan di Labkom.</li>
+                                    <li><b>Pelaksanaan <i>Network Detective</i>:</b> bagaimana instruksi investigasi disampaikan dan bagaimana murid melakukan pengamatan perangkat.</li>
+                                    <li><b>Pendampingan pembelajaran:</b> bagaimana saya memberikan pertanyaan pengarah dan bantuan ketika murid mengalami kesulitan.</li>
+                                    <li><b>Diskusi dan verifikasi:</b> bagaimana murid membandingkan temuan, mengemukakan dugaan, serta menghubungkan hasil pengamatan dengan konsep.</li>
+                                    <li><b>Penguatan dan refleksi:</b> bagaimana saya membantu murid menyusun kesimpulan dan merefleksikan pengalaman belajar.</li>
+                                </ul>
+                                <div class="cy-ph">
+                                    <span class="cy-ph-tag">Menunggu analisis video</span>
+                                    <p><b>Temuan reflektif.</b> Lengkapi setelah menonton ulang rekaman. Cantumkan menit atau momen spesifik, respons murid, dan tindakan saya sebagai bukti. Jangan mengisi temuan berdasarkan perkiraan jika belum terlihat dalam video, dan konfirmasi juga ketidaksesuaian durasi 80 vs 78 menit pada bagian C.</p>
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 </div>
             </div>
@@ -778,6 +1116,76 @@
     </footer>
 
     <script src="../main.js"></script>
+    <script>
+    /* ═══════════════════════════════════════════════════════════════
+       ASET 4 SIKLUS — isi di sini.
+       • id      : ID file Google Drive (bagian di antara /d/ dan /view pada tautan berbagi)
+       • videos  : ID video YouTube (bagian setelah v= atau youtu.be/)
+       Kosongkan ('') bila aset belum ada: tampil sebagai placeholder.
+       Pastikan setiap ID berasal dari siklus yang bersangkutan.
+    ═══════════════════════════════════════════════════════════════ */
+    const SIKLUS_ASET = {
+        1: { docs: [ { label: 'Modul Ajar — Siklus 1 (LKPD Microsoft Word)', id: '' },
+                     { label: 'LKPD — Siklus 1',                             id: '' } ],
+             videos: [ { label: 'Video Pelaksanaan — Siklus 1', id: '' } ] },
+        2: { docs: [ { label: 'Modul Ajar — Siklus 2 (Sistem Komputer 1)',   id: '' } ],
+             videos: [ { label: 'Video Pelaksanaan — Siklus 2', id: '' } ] },
+        3: { docs: [ { label: 'Modul Ajar — Siklus 3 (Sistem Komputer 2)',   id: '' } ],
+             videos: [ { label: 'Video Pelaksanaan — Siklus 3', id: '' } ] },
+        4: { docs: [ { label: 'Modul Ajar — Siklus 4 (Jaringan Komputer 1)', id: '' } ],
+             videos: [ { label: 'Video Pelaksanaan — Siklus 4', id: '' } ] }
+    };
+
+    function cyPreviewToggle(btn) {
+        const box = btn.closest('.cycle-pdf-box');
+        const prev = box.querySelector('.cycle-pdf-preview');
+        const frame = prev.querySelector('iframe');
+        const open = prev.style.display !== 'none';
+        if (open) { prev.style.display = 'none'; frame.src = ''; btn.classList.remove('open');
+                    btn.querySelector('.pdf-toggle-text').textContent = 'Lihat Preview Dokumen'; }
+        else      { frame.src = btn.dataset.pdf; prev.style.display = 'block'; btn.classList.add('open');
+                    btn.querySelector('.pdf-toggle-text').textContent = 'Tutup Preview'; }
+    }
+
+    (function renderAsetSiklus() {
+        const ph = (what) => `<div class="cy-ph"><span class="cy-ph-tag">Belum diisi</span><p>${what}</p></div>`;
+        document.querySelectorAll('[data-cy-docs]').forEach(el => {
+            const cfg = SIKLUS_ASET[el.dataset.cyDocs]; if (!cfg) return;
+            el.innerHTML = cfg.docs.map(d => d.id ? `
+                <div class="cy-doc">
+                    <div class="cy-doc-label">📄 ${d.label}</div>
+                    <div class="cycle-pdf-box">
+                        <button class="cycle-pdf-toggle" onclick="cyPreviewToggle(this)" data-pdf="https://drive.google.com/file/d/${d.id}/preview">
+                            <span class="pdf-toggle-icon">📋</span><span class="pdf-toggle-text">Lihat Preview Dokumen</span><span class="pdf-toggle-arrow">▾</span>
+                        </button>
+                        <div class="cycle-pdf-preview" style="display:none;"><iframe src="" frameborder="0" allow="autoplay"></iframe></div>
+                        <a href="https://drive.google.com/uc?export=download&id=${d.id}" target="_blank" rel="noopener" class="cycle-pdf-download"><span>⬇️</span> Download Dokumen</a>
+                    </div>
+                </div>` : `
+                <div class="cy-doc"><div class="cy-doc-label">📄 ${d.label}</div>${ph('Dokumen belum diunggah. Tambahkan ID file Drive pada <code>SIKLUS_ASET</code> agar pratinjau dan tombol unduh aktif.')}</div>`
+            ).join('');
+        });
+        document.querySelectorAll('[data-cy-videos]').forEach(el => {
+            const cfg = SIKLUS_ASET[el.dataset.cyVideos]; if (!cfg) return;
+            el.innerHTML = cfg.videos.map(v => v.id ? `
+                <div class="cy-video cycle-media-section" style="margin-top:0;padding-top:0;border-top:none;">
+                    <div class="cy-doc-label">🎬 ${v.label}</div>
+                    <button class="cycle-pdf-toggle" onclick="toggleVideo(this)">
+                        <span class="pdf-toggle-icon">▶️</span><span class="pdf-toggle-text">Tonton Video Pembelajaran</span><span class="pdf-toggle-arrow">▾</span>
+                    </button>
+                    <div class="cycle-video-wrap" style="display:none;">
+                        <div class="yt-thumb" data-videoid="${v.id}" onclick="loadYT(this)">
+                            <img src="https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg'" alt="Thumbnail ${v.label}">
+                            <div class="yt-play-btn"><svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#ff0000"/><path d="M45 24 27 14v20" fill="#fff"/></svg></div>
+                        </div>
+                        <iframe class="yt-iframe" style="display:none;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>` : `
+                <div class="cy-video"><div class="cy-doc-label">🎬 ${v.label}</div>${ph('Video belum ditautkan. Tambahkan ID video YouTube pada <code>SIKLUS_ASET</code> agar tombol tonton aktif.')}</div>`
+            ).join('');
+        });
+    })();
+    </script>
 
    
 </body>
